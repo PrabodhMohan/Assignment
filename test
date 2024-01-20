@@ -1,63 +1,29 @@
- import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import {
-  Card, BreadcrumbTrail, Breadcrumb, Heading,
-} from '@americanexpress/dls-react';
-import { browserHistory } from '@americanexpress/one-app-router';
-import data from '../json/reportConfigurationData.json';
-import SearchFilter from './SearchFilter';
-import CheckableDataTable from './CheckableDataTable';
-
-const ReportingConditions = ({ showAccentBar }) => {
-  const [reportTitle, setReportTitle] = useState('');
-  const [showTable, setShowTable] = useState(false);
-  const [moduleName, setModuleName] = useState('');
-
-  const history = browserHistory.getCurrentLocation();
+ useEffect(() => {
+    setCurrentRows(tableData.map(row => ({ ...row, checked: false })));
+  }, [tableData]);
 
   useEffect(() => {
-    const pathName = history.pathname.split('/');
-    setModuleName(pathName[1].toUpperCase());
-    setReportTitle(pathName[pathName.length - 1].split('-')[0]);
-    // setReportTitle(pathName.length >= 2 ? pathName[pathName.length - 1].split('-')[0] : '');
-  }, [history]);
+    const filteredCheckedRows = currentRows.filter(row => row.checked);
+    setIsSingleRowChecked(filteredCheckedRows.length === 1);
+    setDisableDeleteBtn(filteredCheckedRows.length === 0);
+  }, [currentRows]);
 
-  return (
-    <div style={{ marginLeft: '250px' }}>
-      <div>
-        <BreadcrumbTrail className="margin-1">
-          <Breadcrumb href="/usreg">{moduleName}</Breadcrumb>
-          <Breadcrumb>{reportTitle}</Breadcrumb>
-        </BreadcrumbTrail>
-        <Heading level={1} headingStyle="heading5" className="text-align-center">
-          {reportTitle} - Report Configuration
-        </Heading>
-        <SearchFilter showTableProps={setShowTable} />
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
-        {showTable
-        && (
-          <div className="pad-1">
-            <h3 className="margin-1">Summary</h3>
-            <Card className="margin-1" showAccentBar={showAccentBar} style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.1)' }}>
-              <div className="margin-1">
-                <CheckableDataTable
-                  tableData={data.dummyData}
-                />
-              </div>
-            </Card>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
+  const handleRowsPerPageChange = (e) => {
+    setItemsPerPage(e.target.value);
+    setCurrentPage(1);
+  };
 
-ReportingConditions.propTypes = {
-  showAccentBar: PropTypes.bool,
-};
-
-ReportingConditions.defaultProps = {
-  showAccentBar: true,
-};
-
-export default ReportingConditions;
+  const handleRowCheckChange = (id) => {
+    const updatedRows = currentRows.map((row) => {
+      if (row.nReportCondId === id) {
+        return { ...row, checked: !row.checked };
+      }
+      return row;
+    });
+    setCurrentRows(updatedRows);
+    changeTableData(id);
+  };
