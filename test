@@ -1,325 +1,63 @@
- import React, { useState, useEffect } from 'react';
+ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  IconPlus,
-  IconEdit,
-  IconTrash,
-  IconCopy,
-  IconDownload,
-} from '@americanexpress/dls-icons';
-import {
-  DataTableV2,
-  DataTableRowV2,
-  DataTableHeadV2,
-  DataTableHeadCellV2,
-  DataTableBodyV2,
-  DataTableCellV2,
-  Label,
-  Select,
-  SelectOption,
-  Pagination,
-  ButtonTertiary,
-  DialogBox,
-  DialogBoxHeader,
-  DialogBoxBody,
-  Button,
+  Card, BreadcrumbTrail, Breadcrumb, Heading,
 } from '@americanexpress/dls-react';
-import AddForm from './AddForm';
-import ModalRMS from './ModalRMS';
-import businessNames from '../json/businessNames.json';
-import { newRecord } from './constants';
+import { browserHistory } from '@americanexpress/one-app-router';
+import data from '../json/reportConfigurationData.json';
+import SearchFilter from './SearchFilter';
+import CheckableDataTable from './CheckableDataTable';
 
-const CheckableDataTable = ({
-  tableData,
-  striped,
-  bordered,
-  small,
-  checkable,
-}) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [showModal, setShowModal] = useState(false);
-  const [actionType, setActionType] = useState('');
-  const [editRowData, setEditRowData] = useState({});
-  const [isSingleRowChecked, setisSingleRowChecked] = useState(false);
-  const [disableDeleteBtn, setDisableDeleteBtn] = useState(true);
+const ReportingConditions = ({ showAccentBar }) => {
+  const [reportTitle, setReportTitle] = useState('');
+  const [showTable, setShowTable] = useState(false);
+  const [moduleName, setModuleName] = useState('');
 
-  const totalRows = tableData?.length ?? 0;
-  const totalPages = Math.ceil(totalRows / itemsPerPage);
-  const indexOfLastRow = currentPage * itemsPerPage;
-  const indexOfFirstRow = indexOfLastRow - itemsPerPage;
-  const data = tableData?.slice(indexOfFirstRow, indexOfLastRow) ?? [];
-  const [currentRows, setCheckedData] = useState(data);
-  const [selectedRowIndex, setSelectedRowIndex] = useState(0);
-  const [newRow, setNewRow] = useState({});
-
-  const tableHeader = Object.keys(tableData?.[0] ?? []);
-  let updatedRow = {};
+  const history = browserHistory.getCurrentLocation();
 
   useEffect(() => {
-    setCheckedData(data);
-  }, [currentPage, itemsPerPage]);
-
-  useEffect(() => {
-    const filteredCheckedRows = currentRows.filter((row) => Object.prototype.hasOwnProperty.call(row, 'checked') && row.checked);
-    if (filteredCheckedRows.length === 1) {
-      setisSingleRowChecked(true);
-      setEditRowData(filteredCheckedRows[0]);
-    } else {
-      setisSingleRowChecked(false);
-    }
-    if (filteredCheckedRows.length > 0) {
-      setDisableDeleteBtn(false);
-    } else {
-      setDisableDeleteBtn(true);
-    }
-  }, [currentRows]);
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const handleRowsPerPageChange = (e) => {
-    setItemsPerPage(e.target.value);
-    setCurrentPage(1);
-  };
-
-  const handleRowCheckChange = (i, { id }) => {
-    setSelectedRowIndex(id);
-    const newState = [
-      ...currentRows,
-    ];
-
-    setCheckedData(() => {
-      newState[id].checked = !currentRows[id].checked;
-      return newState;
-    });
-  };
-
-  // const handleHeaderRowCheckChange = (event, {
-  //   checked,
-  // }) => {
-  //   const newState = [
-  //     ...currentRows,
-  //   ];
-  //   setCheckedData(() => {
-  //     newState.map((rowData) => {
-  //       rowData.checked = !checked;
-  //       return rowData;
-  //     });
-  //     return newState;
-  //   });
-  // };
-
-  const handleOnActionClick = (action) => {
-    if (action === 'Add') {
-      const addRow = Object.fromEntries(Object.keys(currentRows?.[0]).map((key) => [key, '']));
-      setNewRow(addRow);
-    }
-    const btnAction = action !== 'save' && action !== 'close' ? action : '';
-    setActionType(btnAction);
-
-    if (action === 'save') {
-      if (actionType === 'Add' || actionType === 'Copy') {
-        if (actionType === 'Copy') {
-          delete updatedRow.checked;
-        }
-        setCheckedData((current) => [...current, updatedRow]);
-      } else if (actionType === 'Edit') {
-        const newState = [
-          ...currentRows,
-        ];
-        setCheckedData(() => {
-          newState[selectedRowIndex] = updatedRow;
-          return newState;
-        });
-      }
-    }
-    setShowModal(!showModal);
-  };
-
-  const getUpdatedRow = (row) => {
-    updatedRow = row;
-  };
-
-  const handleDelete = () => {
-    const finalData = currentRows.filter((row) => !row.checked);
-    setCheckedData(finalData);
-    setShowModal(!showModal);
-  };
-
-  const formComponent = (
-    <AddForm
-      tableHeaderProps={data.columnHeader}
-      editData={actionType === 'Add' ? newRow : editRowData}
-      actionType={actionType}
-      updatedRow={getUpdatedRow}
-    />
-  );
+    const pathName = history.pathname.split('/');
+    setModuleName(pathName[1].toUpperCase());
+    setReportTitle(pathName[pathName.length - 1].split('-')[0]);
+    // setReportTitle(pathName.length >= 2 ? pathName[pathName.length - 1].split('-')[0] : '');
+  }, [history]);
 
   return (
-    <div>
-      <div className="margin-1-tb">
-        <ButtonTertiary
-          size="sm"
-          icon={<IconPlus size="xs" title="add" />}
-          onClick={() => handleOnActionClick('Add')}
-        >
-          Add
-        </ButtonTertiary>
-        <ButtonTertiary
-          disabled={!isSingleRowChecked}
-          size="sm"
-          onClick={() => handleOnActionClick('Edit')}
-          icon={<IconEdit size="xs" title="edit" />}
-        >
-          Edit
-        </ButtonTertiary>
-        <ButtonTertiary
-          size="sm"
-          disabled={disableDeleteBtn}
-          onClick={() => handleOnActionClick('Delete')}
-          icon={<IconTrash size="xs" title="delete" />}
-        >
-          Delete
-        </ButtonTertiary>
-        <ButtonTertiary
-          disabled={!isSingleRowChecked}
-          size="sm"
-          onClick={() => handleOnActionClick('Copy')}
-          icon={<IconCopy size="xs" title="copy" />}
-        >
-          Copy
-        </ButtonTertiary>
-        <ButtonTertiary
-          size="sm"
-          icon={<IconDownload size="xs" title="exportData" />}
-        >
-          Export Data
-        </ButtonTertiary>
-      </div>
-      <div className="scroll-x">
-        <DataTableV2
-          id="tablev2-checkbox-instance"
-          checkable={checkable}
-          onRowCheckChange={handleRowCheckChange}
-          // onHeaderRowCheckChange={handleHeaderRowCheckChange}
-          striped={striped}
-          bordered={bordered}
-          small={small}
-          className="text-nowrap"
-        >
-          <DataTableHeadV2>
-            <DataTableRowV2
-              checkboxLabel="Select all"
-              id="tablev2-checkbox-header-row"
-            >
-              {tableHeader.map((header) => (
-                <DataTableHeadCellV2 style={{ border: '0.0625rem solid #d6d6d6' }} key={header}>
-                  {businessNames[header]}
-                </DataTableHeadCellV2>
-              ))}
-            </DataTableRowV2>
-          </DataTableHeadV2>
-          <DataTableBodyV2>
-            {currentRows.map((rowData, index) => (
-              <DataTableRowV2
-                key={String(rowData.nReportCondId)}
-                id={String(index)}
-                rowIndex={index + 2}
-                checked={rowData.checked}
-                checkboxLabel={String(index)}
-              >
-                {Object.entries(rowData).map(([key, value]) => (
-                  <DataTableCellV2 style={{ border: '0.0625rem solid #d6d6d6' }} key={key}>{String(value)}</DataTableCellV2>
-                ))}
-              </DataTableRowV2>
-            ))}
-          </DataTableBodyV2>
-        </DataTableV2>
-      </div>
-
-      <div className="flex flex-align-center flex-justify-between pad-1-tb">
-        <div>
-          <Label htmlFor="dt-v2-p-select">Rows per page</Label>
-          <Select
-            id="dt-v2-p-select"
-            onChange={(e) => handleRowsPerPageChange(e)}
-            value={itemsPerPage}
-            aria-label="rowPerPageNumber"
-          >
-            <SelectOption value="5">5</SelectOption>
-            <SelectOption value="7">7</SelectOption>
-            <SelectOption value="10">10</SelectOption>
-          </Select>
-        </div>
-        <Pagination
-          theme={{
-            background: 'transparent',
-          }}
-          selected={currentPage}
-          onChange={handlePageChange}
-          total={totalPages}
-        />
-      </div>
+    <div style={{ marginLeft: '250px' }}>
       <div>
-        {showModal && (
-        <div>{actionType === 'Delete' ? (
-          <DialogBox onClose={() => handleOnActionClick()} id="dialog-box-example">
-            <DialogBoxHeader id="dialog-box-header">
-              <p role="heading" aria-level="2">
-                Are you sure want to delete these ids?
-              </p>
-            </DialogBoxHeader>
-            <DialogBoxBody id="dialog-box-body">
-              <div className="flex" style={{ gap: '10px' }}>
-                <Button
-                  styleType="primary"
-                  className="margin-auto-lr margin-1-b margin-3-t"
-                  onClick={handleDelete}
-                >
-                  Delete
-                </Button>
-                <Button
-                  styleType="primary"
-                  className="margin-auto-lr margin-1-b margin-3-t"
-                  onClick={() => setShowModal(!showModal)}
-                >
-                  Cancel
-                </Button>
+        <BreadcrumbTrail className="margin-1">
+          <Breadcrumb href="/usreg">{moduleName}</Breadcrumb>
+          <Breadcrumb>{reportTitle}</Breadcrumb>
+        </BreadcrumbTrail>
+        <Heading level={1} headingStyle="heading5" className="text-align-center">
+          {reportTitle} - Report Configuration
+        </Heading>
+        <SearchFilter showTableProps={setShowTable} />
+
+        {showTable
+        && (
+          <div className="pad-1">
+            <h3 className="margin-1">Summary</h3>
+            <Card className="margin-1" showAccentBar={showAccentBar} style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.1)' }}>
+              <div className="margin-1">
+                <CheckableDataTable
+                  tableData={data.dummyData}
+                />
               </div>
-            </DialogBoxBody>
-          </DialogBox>
-        ) : (
-          <ModalRMS
-            showRef={showModal}
-            handleOnActionClick={handleOnActionClick}
-            title={actionType + newRecord.addRecordTitle}
-            tableHeader={data.columnHeader}
-          >
-            {formComponent}
-          </ModalRMS>
+            </Card>
+          </div>
         )}
-        </div>
-        ) }
       </div>
     </div>
   );
 };
 
-CheckableDataTable.propTypes = {
-  striped: PropTypes.bool,
-  bordered: PropTypes.bool,
-  small: PropTypes.bool,
-  checkable: PropTypes.bool,
-  tableData: PropTypes.array,
+ReportingConditions.propTypes = {
+  showAccentBar: PropTypes.bool,
 };
 
-CheckableDataTable.defaultProps = {
-  striped: false,
-  bordered: true,
-  small: true,
-  checkable: true,
+ReportingConditions.defaultProps = {
+  showAccentBar: true,
 };
 
-export default CheckableDataTable;
+export default ReportingConditions;
