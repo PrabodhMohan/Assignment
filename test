@@ -1,81 +1,132 @@
- Warning: A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components
-    at input
-    at EmotionCssPropInternal
-    at ReactlyticsTracking (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:15605:7)
-    at div
-    at EmotionCssPropInternal
-    at http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:15629:7
-    at th
-    at EmotionCssPropInternal
-    at DataTableHeadCellV2 (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:21546:7)
-    at EmotionCssPropInternal
-    at DataTableCheckableCellV2 (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:21735:7)
-    at tr
-    at EmotionCssPropInternal
-    at DataTableRowV2 (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:21861:7)
-    at thead
-    at EmotionCssPropInternal
-    at DataTableHeadV2 (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:21694:7)
-    at table
-    at EmotionCssPropInternal
-    at DataTableV2 (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:21996:7)
-    at div
-    at div
-    at CheckableDataTable (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:27098:5)
-    at div
-    at div
-    at EmotionCssPropInternal
-    at div
-    at EmotionCssPropInternal
-    at Card (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:20609:7)
-    at div
-    at div
-    at div
-    at ReportingConditions (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:27335:32)
-    at div
-    at div
-    at IntlProvider3 (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:12659:45)
-    at AxpRegulatoryReportingComputeEngine (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:27543:48)
-    at ReactlyticsProvider2 (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:2476:30)
-    at ExtendReactlytics2 (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:2636:30)
-    at I (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:8525:7)
-    at m2 (http://localhost:3001/static/modules/axp-regulatory-reporting-compute-engine/1.0.0/axp-regulatory-reporting-compute-engine.browser.js:8543:61)
-    at ConnectFunction (http://localhost:3000/_/static/app/6.9.0-b7c7dec0/app~vendors.js:27865:75)
-    at HolocronModuleWrapper (http://localhost:3000/_/static/app/6.9.0-b7c7dec0/app~vendors.js:15378:89)
-    at ConnectFunction (http://localhost:3000/_/static/app/6.9.0-b7c7dec0/app~vendors.js:27865:75)
-    at RouterContext (http://localhost:3000/_/static/app/6.9.0-b7c7dec0/app~vendors.js:5252:5)
-    at Router (http://localhost:3000/_/static/app/6.9.0-b7c7dec0/app~vendors.js:5050:5)
-    at Provider (http://localhost:3000/_/static/app/6.9.0-b7c7dec0/app~vendors.js:27606:20)
-    at App
-printWarning @ react-dom.development.js:67
-error @ react-dom.development.js:43
-updateWrapper @ react-dom.development.js:1539
-updateProperties @ react-dom.development.js:9376
-commitUpdate @ react-dom.development.js:10252
-commitWork @ react-dom.development.js:21401
-commitMutationEffects @ react-dom.development.js:23401
-callCallback @ react-dom.development.js:3945
-invokeGuardedCallbackDev @ react-dom.development.js:3994
-invokeGuardedCallback @ react-dom.development.js:4056
-commitRootImpl @ react-dom.development.js:23121
-unstable_runWithPriority @ scheduler.development.js:468
-runWithPriority$1 @ react-dom.development.js:11276
-commitRoot @ react-dom.development.js:22990
-performSyncWorkOnRoot @ react-dom.development.js:22329
-(anonymous) @ react-dom.development.js:11327
-unstable_runWithPriority @ scheduler.development.js:468
-runWithPriority$1 @ react-dom.development.js:11276
-flushSyncCallbackQueueImpl @ react-dom.development.js:11322
-flushSyncCallbackQueue @ react-dom.development.js:11309
-flushPendingDiscreteUpdates @ react-dom.development.js:22372
-flushDiscreteUpdates @ react-dom.development.js:22353
-finishEventHandler @ react-dom.development.js:3714
-batchedEventUpdates @ react-dom.development.js:3748
-dispatchEventForPluginEventSystem @ react-dom.development.js:8507
-attemptToDispatchEvent @ react-dom.development.js:6005
-dispatchEvent @ react-dom.development.js:5924
-unstable_runWithPriority @ scheduler.development.js:468
-runWithPriority$1 @ react-dom.development.js:11276
-discreteUpdates$1 @ react-dom.development.js:22413
-discreteUpdates @ react-dom.development.js:3756
-dispatchDiscreteEvent @ react-dom.development.js:5889
+ ({
+  striped,
+  bordered,
+  small,
+  checkable
+}) => {
+  const [state, setState] = React.useState({
+    rows: {
+      items: {
+        sainsBury: {
+          cells: [{
+            label: 'Jan 05, 2020'
+          }, {
+            label: 'SAINSBURY’S ONLINE-GOL LON'
+          }, {
+            label: '$8.76',
+            align: 'right'
+          }],
+          checked: false
+        },
+        onlinePayment: {
+          cells: [{
+            label: 'Mar 16, 2020'
+          }, {
+            label: 'Online Payment'
+          }, {
+            label: '$300.00',
+            align: 'right'
+          }],
+          checked: true
+        },
+        swiss: {
+          cells: [{
+            label: 'Apr 14, 2020'
+          }, {
+            label: 'SWISS Intl Air LinesBasel CH'
+          }, {
+            label: '$5,000.00',
+            align: 'right'
+          }],
+          checked: false
+        },
+        musicEnterprise: {
+          cells: [{
+            label: 'Oct 01, 2020'
+          }, {
+            label: 'Music Enterprise In'
+          }, {
+            label: '$10.67',
+            align: 'right'
+          }],
+          checked: true
+        },
+        martins: {
+          cells: [{
+            label: 'Mar 15, 2020'
+          }, {
+            label: 'Martin’s News Shops Wellington'
+          }, {
+            label: '$32.99',
+            align: 'right'
+          }],
+          checked: true
+        }
+      },
+      order: ['sainsBury', 'onlinePayment', 'swiss', 'musicEnterprise', 'martins']
+    }
+  });
+  const handleRowCheckChange = (event, {
+    id
+  }) => {
+    setState(oldState => {
+      const previousRowState = oldState.rows.items[id];
+      const newSate = {
+        rows: {
+          ...state.rows,
+          items: {
+            ...oldState.rows.items
+          }
+        }
+      };
+      newSate.rows.items[id] = {
+        ...previousRowState,
+        checked: !previousRowState.checked
+      };
+      return newSate;
+    });
+  };
+  const handleHeaderRowCheckChange = (event, {
+    checked
+  }) => {
+    setState(oldState => {
+      const newSate = {
+        rows: {
+          ...state.rows,
+          items: {
+            ...oldState.rows.items
+          }
+        }
+      };
+      state.rows.order.forEach(rowKey => {
+        const previousRowState = oldState.rows.items[rowKey];
+        newSate.rows.items[rowKey] = {
+          ...previousRowState,
+          checked: !checked
+        };
+      });
+      return newSate;
+    });
+  };
+  return <div>
+          <DataTableV2 id="tablev2-checkbox-instance" checkable={true} onRowCheckChange={handleRowCheckChange} onHeaderRowCheckChange={handleHeaderRowCheckChange} striped={striped} bordered={bordered} small={small}>
+            <DataTableHeadV2>
+              <DataTableRowV2 checkboxLabel="Select all" id="tablev2-checkbox-header-row">
+                <DataTableHeadCellV2>Date</DataTableHeadCellV2>
+                <DataTableHeadCellV2>Description</DataTableHeadCellV2>
+                <DataTableHeadCellV2 align="right">Amount</DataTableHeadCellV2>
+              </DataTableRowV2>
+            </DataTableHeadV2>
+            <DataTableBodyV2>
+              {state.rows.order.map((rowKey, index) => {
+          const rowData = state.rows.items[rowKey];
+          return <DataTableRowV2 key={rowKey} id={rowKey} rowIndex={index + 2} checked={rowData.checked} checkboxLabel={rowData.cells[1].label}>
+                    {rowData.cells.map(cell => <DataTableCellV2 align={cell.align} key={cell.label}>
+                        {cell.label}
+                      </DataTableCellV2>)}
+                  </DataTableRowV2>;
+        })}
+            </DataTableBodyV2>
+          </DataTableV2>
+        </div>;
+}
