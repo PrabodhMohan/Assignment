@@ -5,6 +5,6 @@
     if (newState[id]) {
       newState[id].checked = !newState[id].checked;
     }
-    return newState;
+    return [...newState];  // Ensure that the state is always an array
   });
 };
