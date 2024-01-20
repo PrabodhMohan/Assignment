@@ -1,12 +1,4 @@
- import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import {
-  // ... (unchanged imports)
-} from '@americanexpress/dls-react';
-import AddForm from './AddForm';
-import ModalRMS from './ModalRMS';
-import businessNames from '../json/businessNames.json';
-import { newRecord } from './constants';
+ // ... (previous imports)
 
 const CheckableDataTable = ({
   tableData,
@@ -15,6 +7,7 @@ const CheckableDataTable = ({
   bordered,
   small,
   checkable,
+  checkedRows,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -26,19 +19,14 @@ const CheckableDataTable = ({
   const [currentRows, setCurrentRows] = useState(tableData.map(row => ({ ...row, checked: false })));
   const [selectedRowIndex, setSelectedRowIndex] = useState(0);
   const [newRow, setNewRow] = useState({});
-  
-  const totalRows = tableData?.length ?? 0;
-  const totalPages = Math.ceil(totalRows / itemsPerPage);
-  const indexOfLastRow = currentPage * itemsPerPage;
-  const indexOfFirstRow = indexOfLastRow - itemsPerPage;
-  const data = tableData?.slice(indexOfFirstRow, indexOfLastRow) ?? [];
-  const [currentData, setCurrentData] = useState(data);
-  
+  const [currentData, setCurrentData] = useState([]);
+
   const tableHeader = Object.keys(tableData?.[0] ?? []);
+  let updatedRow = {};
 
   useEffect(() => {
-    setCurrentData(data);
-  }, [currentPage, itemsPerPage]);
+    setCurrentData(tableData);
+  }, [tableData, currentPage, itemsPerPage]);
 
   useEffect(() => {
     const filteredCheckedRows = currentRows.filter(row => row.checked);
@@ -68,15 +56,45 @@ const CheckableDataTable = ({
       return row;
     });
     setCurrentRows(updatedRows);
+    changeTableData(id);
   };
 
   const handleOnActionClick = (action) => {
-    // ... (unchanged code)
+    if (action === 'Add') {
+      const addRow = Object.fromEntries(Object.keys(currentRows?.[0]).map((key) => [key, '']));
+      setNewRow(addRow);
+    }
+    const btnAction = action !== 'save' && action !== 'close' ? action : '';
+    setActionType(btnAction);
+
+    if (action === 'save') {
+      if (actionType === 'Add' || actionType === 'Copy') {
+        if (actionType === 'Copy') {
+          delete updatedRow.checked;
+        }
+        setCurrentRows((current) => [...current, updatedRow]);
+      } else if (actionType === 'Edit') {
+        const updatedRows = [...currentRows];
+        updatedRows[selectedRowIndex] = updatedRow;
+        setCurrentRows(updatedRows);
+      }
+    }
+    setShowModal(!showModal);
+  };
+
+  const getUpdatedRow = (row) => {
+    updatedRow = row;
+  };
+
+  const handleDelete = () => {
+    const finalData = currentRows.filter((row) => !row.checked);
+    setCurrentRows(finalData);
+    setShowModal(!showModal);
   };
 
   const formComponent = (
     <AddForm
-      tableHeaderProps={data.columnHeader}
+      tableHeaderProps={currentData.columnHeader}
       editData={actionType === 'Add' ? newRow : editRowData}
       actionType={actionType}
       updatedRow={getUpdatedRow}
@@ -84,16 +102,60 @@ const CheckableDataTable = ({
   );
 
   return (
-    // ... (unchanged code)
+    <div>
+      <div className="margin-1-tb">
+        {/* ... (unchanged code) */}
+      </div>
+      <div className="scroll-x">
+        <DataTableV2
+          id="tablev2-checkbox-instance"
+          checkable={checkable}
+          onRowCheckChange={handleRowCheckChange}
+          striped={striped}
+          bordered={bordered}
+          small={small}
+          className="text-nowrap"
+        >
+          <DataTableHeadV2>
+            {/* ... (unchanged code) */}
+          </DataTableHeadV2>
+          <DataTableBodyV2>
+            {currentRows.map((rowData, index) => (
+              <DataTableRowV2
+                key={String(rowData.nReportCondId)}
+                id={String(rowData.nReportCondId)}
+                rowIndex={index + 2}
+                checked={rowData.checked || checkedRows.includes(rowData.nReportCondId)}
+                checkboxLabel={String(rowData.nReportCondId)}
+                value={String(rowData.nReportCondId)}
+              >
+                {/* ... (unchanged code) */}
+              </DataTableRowV2>
+            ))}
+          </DataTableBodyV2>
+        </DataTableV2>
+      </div>
+
+      {/* ... (unchanged code) */}
+    </div>
   );
 };
 
 CheckableDataTable.propTypes = {
-  // ... (unchanged prop types)
+  striped: PropTypes.bool,
+  bordered: PropTypes.bool,
+  small: PropTypes.bool,
+  checkable: PropTypes.bool,
+  tableData: PropTypes.array,
+  checkedRows: PropTypes.array,
+  changeTableData: PropTypes.func,
 };
 
 CheckableDataTable.defaultProps = {
-  // ... (unchanged default props)
+  striped: false,
+  bordered: true,
+  small: true,
+  checkable: true,
 };
 
 export default CheckableDataTable;
