@@ -2,14 +2,12 @@ const handleRowCheckChange = (i, { id }) => {
   changeTableData(id);
 
   setCheckedData((current) => {
-    const newState = [...current];
-    const index = newState.findIndex((row) => row.nReportCondId === id);
-
-    if (index !== -1) {
-      // Toggle the checked property or initialize it to false if undefined
-      newState[index].checked = !newState[index].checked || false;
-    }
-
-    return newState;
+    return current.map((row) => {
+      if (row.nReportCondId === id) {
+        // Create a new object to avoid modifying the original state
+        return { ...row, checked: !row.checked || false };
+      }
+      return row;
+    });
   });
 };
