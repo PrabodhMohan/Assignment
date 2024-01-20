@@ -1,12 +1,99 @@
-  const changeTableData = (id) => {
-    setCheckedRows((current) => {
-      const currentIndex = current.indexOf(id);
-      if (currentIndex === -1) {
-        return [...current, id];
-      } else {
-        const updatedRows = [...current];
-        updatedRows.splice(currentIndex, 1);
-        return updatedRows;
-      }
-    });
+ import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import {
+  // ... (unchanged imports)
+} from '@americanexpress/dls-react';
+import AddForm from './AddForm';
+import ModalRMS from './ModalRMS';
+import businessNames from '../json/businessNames.json';
+import { newRecord } from './constants';
+
+const CheckableDataTable = ({
+  tableData,
+  changeTableData,
+  striped,
+  bordered,
+  small,
+  checkable,
+}) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [showModal, setShowModal] = useState(false);
+  const [actionType, setActionType] = useState('');
+  const [editRowData, setEditRowData] = useState({});
+  const [isSingleRowChecked, setIsSingleRowChecked] = useState(false);
+  const [disableDeleteBtn, setDisableDeleteBtn] = useState(true);
+  const [currentRows, setCurrentRows] = useState(tableData.map(row => ({ ...row, checked: false })));
+  const [selectedRowIndex, setSelectedRowIndex] = useState(0);
+  const [newRow, setNewRow] = useState({});
+  
+  const totalRows = tableData?.length ?? 0;
+  const totalPages = Math.ceil(totalRows / itemsPerPage);
+  const indexOfLastRow = currentPage * itemsPerPage;
+  const indexOfFirstRow = indexOfLastRow - itemsPerPage;
+  const data = tableData?.slice(indexOfFirstRow, indexOfLastRow) ?? [];
+  const [currentData, setCurrentData] = useState(data);
+  
+  const tableHeader = Object.keys(tableData?.[0] ?? []);
+
+  useEffect(() => {
+    setCurrentData(data);
+  }, [currentPage, itemsPerPage]);
+
+  useEffect(() => {
+    const filteredCheckedRows = currentRows.filter(row => row.checked);
+    if (filteredCheckedRows.length === 1) {
+      setIsSingleRowChecked(true);
+      setEditRowData(filteredCheckedRows[0]);
+    } else {
+      setIsSingleRowChecked(false);
+    }
+    setDisableDeleteBtn(filteredCheckedRows.length === 0);
+  }, [currentRows]);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
+
+  const handleRowsPerPageChange = (e) => {
+    setItemsPerPage(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleRowCheckChange = (i, { id }) => {
+    const updatedRows = currentRows.map((row) => {
+      if (row.nReportCondId === id) {
+        return { ...row, checked: !row.checked };
+      }
+      return row;
+    });
+    setCurrentRows(updatedRows);
+  };
+
+  const handleOnActionClick = (action) => {
+    // ... (unchanged code)
+  };
+
+  const formComponent = (
+    <AddForm
+      tableHeaderProps={data.columnHeader}
+      editData={actionType === 'Add' ? newRow : editRowData}
+      actionType={actionType}
+      updatedRow={getUpdatedRow}
+    />
+  );
+
+  return (
+    // ... (unchanged code)
+  );
+};
+
+CheckableDataTable.propTypes = {
+  // ... (unchanged prop types)
+};
+
+CheckableDataTable.defaultProps = {
+  // ... (unchanged default props)
+};
+
+export default CheckableDataTable;
