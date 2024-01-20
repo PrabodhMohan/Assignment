@@ -1,12 +1,10 @@
  const handleRowCheckChange = (i, { id }) => {
-  setCheckedData((prevState) => {
-    const newState = [...prevState];
-    newState[id] = { ...newState[id], checked: !newState[id].checked };
+  setSelectedRowIndex(id);
+  setCheckedData((prevRows) => {
+    const newState = [...prevRows];
+    if (newState[id]) {
+      newState[id].checked = !newState[id].checked;
+    }
     return newState;
   });
 };
-
-
-const [currentRows, setCheckedData] = useState(
-  data.dummyData.map((row) => ({ ...row, checked: false }))
-);
