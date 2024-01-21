@@ -1,323 +1,63 @@
- {
-    "componentList": [
-        {
-            "rId": 1,
-            "id": 1,
-            "name": "RMS"
-        },
-        {
-            "rId": 1,
-            "id": 2,
-            "name": "RulesMetadata"
-        },
-        {
-            "rId": 1,
-            "id": 3,
-            "name": "GL Recon"
-        }
-    ],
-    "tableList": [
-        {
-            "rId": 1,
-            "cId": 1,
-            "id": 1,
-            "name": "Table1"
-        },
-        {
-            "rId": 1,
-            "cId": 1,
-            "id": 2,
-            "name": "Table2"
-        },
-        {
-            "rId": 1,
-            "cId": 2,
-            "id": 3,
-            "name": "Table3"
-        },
-        {
-            "rId": 1,
-            "cId": 3,
-            "id": 4,
-            "name": "Table4"
-        }
-    ],
-    "columnList": [
-        {
-            "rId": 1,
-            "cId": 1,
-            "tId": 1,
-            "id": 1,
-            "name": "Column1"
-        },
-        {
-            "rId": 1,
-            "cId": 1,
-            "tId": 1,
-            "id": 2,
-            "name": "Column2"
-        },
-        {
-            "rId": 1,
-            "cId": 1,
-            "tId": 1,
-            "id": 3,
-            "name": "Column3"
-        },
-        {
-            "rId": 1,
-            "cId": 2,
-            "tId": 1,
-            "id": 4,
-            "name": "Column4"
-        },
-        {
-            "rId": 1,
-            "cId": 2,
-            "tId": 2,
-            "id": 5,
-            "name": "Column5"
-        },
-        {
-            "rId": 1,
-            "cId": 2,
-            "tId": 3,
-            "id": 6,
-            "name": "Column6"
-        }
-    ],
-    "columnHeader": [
-        {
-            "name": "REPORT COND ID",
-            "type": "nReportCondId"
-        },
-        {
-            "name": "FIC MIS DATE",
-            "type": "ficMisDate"
-        },
-        {
-            "name": "REPORT NAME",
-            "type": "vReportName"
-        },
-        {
-            "name": "PORTFOLIO",
-            "type": "portfolio"
-        },
-        {
-            "name": "CELL GROUP ID",
-            "type": "cellGroupId"
-        },
-        {
-            "name": "CELL ID",
-            "type": "cellId"
-        },
-        {
-            "name": "MV NAME",
-            "type": "mvName"
-        },
-        {
-            "name": "AGGREGATE COLUMN ID",
-            "type": "aggregateColumnId"
-        },
-        {
-            "name": "COLUMN ID",
-            "type": "selectColumnId"
-        },
-        {
-            "name": "COLUMN ALIAS",
-            "type": "selectColumnAlias"
-        },
-        {
-            "name": "OPERATOR TYPE",
-            "type": "operatorType"
-        },
-        {
-            "name": "MEMBER CODE",
-            "type": "memberCode"
-        },
-        {
-            "name": "START DATE",
-            "type": "startDate"
-        },
-        {
-            "name": "END DATE",
-            "type": "endDate"
-        },
-        {
-            "name": "LATEST RECORD INDICATOR",
-            "type": "latestRecordIndicator"
-        },
-        {
-            "name": "FILTER COND",
-            "type": "filterCond"
-        }
-    ],
-    "dummyData": [
-        {
-            "nReportCondId": 10938,
-            "ficMisDate": "31-AUG-22",
-            "vReportName": "FRY112314",
-            "portfolio": "AR_OTHER_LOANS",
-            "cellGroupId": 1,
-            "cellId": "SUBC1403",
-            "mvName": "DEBSA001",
-            "aggregateColumnId": "RMS_MSR_CQSCTB13",
-            "selectColumnId": "RMS_DIM_IJSFH176",
-            "selectColumnAlias": "HIREG065",
-            "operatorType": "IN",
-            "memberCode": "('1-4FAMCONLOAN','OTHCONLOAN','SECFARMLAND','1-4FAMRESCLENDJNLIEN','MULTIFAMRES','OWNOCCUNONFARMNONRES','LOANDEPINSTUSBANK','LOANDEPINSTFRGNBANK','LOANFINAGRIPROD','COMINDLOAN','CONLOANCREDCARD','CONLOANAUTOLOAN','CONLOANOTHREVCRPLNS','CONLOANOTHLOAN','LOANFOREOFFINST','LOANNONDEPFININST','OTHLOAN','LEASEFINRECCONLEASE','LEASEFINRECALLOTHLSE','LNNDEPFININSTPRCRSEC')",
-            "startDate": "31-AUG-22",
-            "endDate": "31-DEC-99",
-            "latestRecordIndicator": "Y",
-            "filterCond": "coalesce(V_COLUMN_20,'N') <> 'Y' AND coalesce(V_COLUMN_8 , 'AST') in ('AST','MSG','OTH') AND  V_COLUMN_21 IN ('AFS','HTM') ",
-            "checked": false
-        },
-        {
-            "nReportCondId": 10939,
-            "ficMisDate": "31-AUG-22",
-            "vReportName": "FRY112314",
-            "portfolio": "AR_OTHER_LOANS",
-            "cellGroupId": 1,
-            "cellId": "BHCS1403",
-            "mvName": "DEBSA001",
-            "aggregateColumnId": "RMS_MSR_CQSCTB13",
-            "selectColumnId": "RMS_DIM_IJSFH176",
-            "selectColumnAlias": "HIREG065",
-            "operatorType": "IN",
-            "memberCode": "('1-4FAMCONLOAN','OTHCONLOAN','SECFARMLAND','1-4FAMRESCLENDJNLIEN','MULTIFAMRES','OWNOCCUNONFARMNONRES','LOANDEPINSTUSBANK','LOANDEPINSTFRGNBANK','LOANFINAGRIPROD','COMINDLOAN','CONLOANCREDCARD','CONLOANAUTOLOAN','CONLOANOTHREVCRPLNS','CONLOANOTHLOAN','LOANFOREOFFINST','LOANNONDEPFININST','OTHLOAN','LEASEFINRECCONLEASE','LEASEFINRECALLOTHLSE','LNNDEPFININSTPRCRSEC')",
-            "startDate": "31-AUG-22",
-            "endDate": "31-DEC-99",
-            "latestRecordIndicator": "Y",
-            "filterCond": "coalesce(V_COLUMN_20,'N') <> 'Y' AND coalesce(V_COLUMN_8 , 'AST') in ('AST','MSG','OTH') AND  V_COLUMN_21 IN ('AFS','HTM') ",
-            "checked": false
-        },
-        {
-            "nReportCondId": 10940,
-            "ficMisDate": "31-AUG-22",
-            "vReportName": "FRY112314",
-            "portfolio": "AR_OTHER_LOANS",
-            "cellGroupId": 2,
-            "cellId": "SUBC2200",
-            "mvName": "DEPCB005",
-            "aggregateColumnId": "RMS_MSR_CQGE5131",
-            "selectColumnId": "RMS_DIM_IJSFH176",
-            "selectColumnAlias": "HIREG065",
-            "operatorType": "IN",
-            "memberCode": "('OTHLOAN','1-4FAMRESCLENDJNLIEN','LOANFINAGRIPROD','CONLOANAUTOLOAN','LOANFOREOFFINST','1-4FAMCONLOAN','MULTIFAMRES','LOANDEPINSTUSBANK','COMINDLOAN','CONLOANOTHREVCRPLNS','LOANNONDEPFININST','LOANSTASUBDIVUS','OTHCONLOAN','OWNOCCUNONFARMNONRES','LOANDEPINSTFRGNBANK','CONLOANCREDCARD','CONLOANOTHLOAN','LNNDEPFININSTPRCRSEC','SECFARMLAND')",
-            "startDate": "31-AUG-22",
-            "endDate": "31-DEC-99",
-            "latestRecordIndicator": "Y",
-            "filterCond": "coalesce(V_COLUMN_20, 'N') <> 'Y'",
-            "checked": false
-        },
-        {
-            "nReportCondId": 10941,
-            "ficMisDate": "31-AUG-22",
-            "vReportName": "FRY112314",
-            "portfolio": "AR_OTHER_LOANS",
-            "cellGroupId": 1,
-            "cellId": "BHCS1722",
-            "mvName": "DEBSA001",
-            "aggregateColumnId": "RMS_MSR_BP11",
-            "selectColumnId": "RMS_DIM_IJSFH176",
-            "selectColumnAlias": "HIREG065",
-            "operatorType": "IN",
-            "memberCode": "('1-4FAMCONLOAN','OTHCONLOAN','SECFARMLAND','1-4FAMRESCLENDJNLIEN','MULTIFAMRES','OWNOCCUNONFARMNONRES','LEASEFINRECCONLEASE','LEASEFINRECALLOTHLSE','LOANNONDEPFININST','LNNDEPFININSTPRCRSEC','OTHLOAN','LOANDEPINSTUSBANK','LOANDEPINSTFRGNBANK','LOANFOREOFFINST','LOANSTASUBDIVUS','LOANFINAGRIPROD','COMINDLOAN','CONLOANAUTOLOAN','CONLOANCREDCARD','CONLOANOTHLOAN','CONLOANOTHREVCRPLNS')",
-            "startDate": "31-AUG-22",
-            "endDate": "31-DEC-99",
-            "latestRecordIndicator": "Y",
-            "filterCond": "COALESCE(V_COLUMN_20, 'N') <> 'Y' AND coalesce(V_COLUMN_8 , 'AST') in ('AST','MSG','OTH')",
-            "checked": false
-        }
-    ],
-    "rms": {
-        "tenancyData": [
-            {
-                "id": 1,
-                "name": "USREG"
-            },
-            {
-                "id": 2,
-                "name": "Liqudity"
-            },
-            {
-                "id": 3,
-                "name": "IRR"
-            }
-        ],
-        "reportsData": [
-            {
-                "id": 1,
-                "name": "FRY14QBAL"
-            },
-            {
-                "id": 2,
-                "name": "FRY9C"
-            },
-            {
-                "id": 3,
-                "name": "FR2644"
-            },
-            {
-                "id": 4,
-                "name": "FFIEC031"
-            },
-            {
-                "id": 5,
-                "name": "FRY14QSEC"
-            },
-            {
-                "id": 6,
-                "name": "FRY112314"
-            },
-            {
-                "id": 7,
-                "name": "FRY14MD2"
-            },
-            {
-                "id": 8,
-                "name": "FRY14QSUPMNT"
-            }
-        ],
-        "tableData": [
-            {
-                "id": 1,
-                "name": "REPORT_MDRM_LIST"
-            },
-            {
-                "id": 2,
-                "name": "mdrm_reporting_cond"
-            },
-            {
-                "id": 3,
-                "name": "aggregate_mapping"
-            },
-            {
-                "id": 4,
-                "name": "rr_fct_joins"
-            }
-        ],
-        "moduleData": [
-            {
-                "id": 1,
-                "name": "RMS"
-            },
-            {
-                "id": 2,
-                "name": "GL Mapper"
-            },
-            {
-                "id": 3,
-                "name": "RulesData"
-            },
-            {
-                "id": 4,
-                "name": "GL Recon"
-            },
-            {
-                "id": 5,
-                "name": "Stg Agg"
-            }
-        ]
-    }
-}
+ import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import {
+  Card, BreadcrumbTrail, Breadcrumb, Heading,
+} from '@americanexpress/dls-react';
+import { browserHistory } from '@americanexpress/one-app-router';
+import data from '../json/reportConfigurationData.json';
+import SearchFilter from './SearchFilter';
+import CheckableDataTable from './CheckableDataTable';
+
+const ReportingConditions = ({ showAccentBar }) => {
+  const [reportTitle, setReportTitle] = useState('');
+  const [showTable, setShowTable] = useState(false);
+  const [moduleName, setModuleName] = useState('');
+
+  const history = browserHistory.getCurrentLocation();
+
+  useEffect(() => {
+    const pathName = history.pathname.split('/');
+    setModuleName(pathName[1].toUpperCase());
+    setReportTitle(pathName[pathName.length - 1].split('-')[0]);
+    // setReportTitle(pathName.length >= 2 ? pathName[pathName.length - 1].split('-')[0] : '');
+  }, [history]);
+
+  return (
+    <div style={{ marginLeft: '250px' }}>
+      <div>
+        <BreadcrumbTrail className="margin-1">
+          <Breadcrumb href="/usreg">{moduleName}</Breadcrumb>
+          <Breadcrumb>{reportTitle}</Breadcrumb>
+        </BreadcrumbTrail>
+        <Heading level={1} headingStyle="heading5" className="text-align-center">
+          {reportTitle} - Report Configuration
+        </Heading>
+        <SearchFilter showTableProps={setShowTable} />
+
+        {showTable
+        && (
+          <div className="pad-1">
+            <h3 className="margin-1">Summary</h3>
+            <Card className="margin-1" showAccentBar={showAccentBar} style={{ boxShadow: '0 4px 8px 0 rgba(0,0,0,0.1)' }}>
+              <div className="margin-1">
+                <CheckableDataTable
+                  tableData={data.dummyData || []}
+                />
+              </div>
+            </Card>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+ReportingConditions.propTypes = {
+  showAccentBar: PropTypes.bool,
+};
+
+ReportingConditions.defaultProps = {
+  showAccentBar: true,
+};
+
+export default ReportingConditions;
