@@ -1,44 +1,7 @@
- import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import {
-  Label,
-  Input,
-} from '@americanexpress/dls-react';
-import businessNames from '../json/businessNames.json';
+ it('calls updatedRow when input changes', () => {
+    const { getByLabelText } = render(<AddForm editData={{}} updatedRow={mockUpdatedRow} />);
 
-const AddForm = ({ editData, updatedRow }) => {
-  const [editRow, setEditRow] = useState(editData);
-  const handleChange = (event, key) => {
-    const newExampleState = { ...editRow };
-    newExampleState[key] = event.target.value;
-    setEditRow(newExampleState);
-    updatedRow(newExampleState);
-  };
+    fireEvent.change(getByLabelText('someKey'), { target: { value: 'newValue' } });
 
-  return (
-    <div>
-      { Object.entries(editRow).map(([key, subject]) => (
-        <div className="row" key={key}>
-          <div className="col-md-9 margin-2-b">
-            <Label htmlFor={key}>{businessNames[key] ?? ''}</Label>
-            <br />
-            <Input
-              aria-label={key}
-              id={key}
-              type="text"
-              value={String(subject)}
-              onChange={(e) => handleChange(e, key)}
-            />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-AddForm.propTypes = {
-  editData: PropTypes.object,
-  updatedRow: PropTypes.func,
-};
-
-export default AddForm;
+    expect(mockUpdatedRow).toHaveBeenCalledWith({ someKey: 'newValue' });
+  });
