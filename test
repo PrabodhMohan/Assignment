@@ -1,3 +1,76 @@
- import ModuleContainer from './components/AxpRegulatoryReportingComputeEngine';
+ import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import AddForm from '../../../src/components/Common/AddForm';
 
-export default ModuleContainer;
+describe('AddForm', () => {
+  it('should render header with add type', () => {
+    render(<AddForm actionType="Add" editData={{ id: '1', name: 'dummyText' }} />);
+    const inputTxt = screen.getByLabelText('id', { selector: 'input' });
+    fireEvent.change(inputTxt, { target: { value: '1' } });
+    expect(inputTxt).toHaveValue('1');
+  });
+
+  it('should render header with edit type', () => {
+    render(<AddForm actionType="Edit" editData={{ id: '1', name: 'dummyText' }} updatedRow={null} />);
+    const inputTxt = screen.getByLabelText('id', { selector: 'input' });
+    fireEvent.change(inputTxt, { target: { value: '1' } });
+    expect(inputTxt).toHaveValue('1');
+  });
+});
+
+
+describe('AddForm new  Component', () => {
+  const mockUpdatedRow = jest.fn();
+
+  it('renders with editData', () => {
+    const editData = {
+      key1: 'value1',
+      key2: 'value2',
+    };
+
+    const { getByLabelText } = render(<AddForm editData={'oldValue'} updatedRow={mockUpdatedRow} />);
+
+    expect(getByLabelText('key1')).toHaveValue('value1');
+    expect(getByLabelText('key2')).toHaveValue('value2');
+  });
+
+  it('calls updatedRow when input changes', () => {
+    const { getByLabelText } = render(<AddForm editData={'oldValue'} updatedRow={mockUpdatedRow} />);
+
+    fireEvent.change(getByLabelText('someKey'), { target: { value: 'newValue' } });
+
+    expect(mockUpdatedRow).toHaveBeenCalledWith({ someKey: 'newValue' });
+  });
+
+  // it('renders labels from businessNames.json', () => {
+  //   const businessNames = {
+  //     key1: 'Label 1',
+  //     key2: 'Label 2',
+  //   };
+
+  //   const editData = {
+  //     key1: 'value1',
+  //     key2: 'value2',
+  //   };
+
+  //   const { getByText } = render(
+  //     <AddForm editData={editData} updatedRow={mockUpdatedRow} businessNames={businessNames} />
+  //   );
+
+  //   expect(getByText('Label 1')).not.toBeInTheDocument();
+  //   expect(getByText('Label 2')).toBeInTheDocument();
+  // });
+
+  // it('handles undefined businessNames gracefully', () => {
+  //   const editData = {
+  //     key1: 'value1',
+  //     key2: 'value2',
+  //   };
+
+  //   const { getByText } = render(<AddForm editData={editData} updatedRow={mockUpdatedRow} />);
+
+  //   // Expect no errors even when businessNames is undefined
+  //   expect(getByText('')).not.toBeInTheDocument();
+  // });
+
+});
