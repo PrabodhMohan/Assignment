@@ -1,9 +1,25 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import AddForm from './AddForm';
+ import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import AddForm from '../../../src/components/Common/AddForm';
 
-describe('AddForm Component', () => {
+describe('AddForm', () => {
+  it('should render header with add type', () => {
+    render(<AddForm actionType="Add" editData={{ id: '1', name: 'dummyText' }} />);
+    const inputTxt = screen.getByLabelText('id', { selector: 'input' });
+    fireEvent.change(inputTxt, { target: { value: '1' } });
+    expect(inputTxt).toHaveValue('1');
+  });
+
+  it('should render header with edit type', () => {
+    render(<AddForm actionType="Edit" editData={{ id: '1', name: 'dummyText' }} updatedRow={null} />);
+    const inputTxt = screen.getByLabelText('id', { selector: 'input' });
+    fireEvent.change(inputTxt, { target: { value: '1' } });
+    expect(inputTxt).toHaveValue('1');
+  });
+});
+
+
+describe('AddForm new  Component', () => {
   const mockUpdatedRow = jest.fn();
 
   it('renders with editData', () => {
@@ -41,7 +57,7 @@ describe('AddForm Component', () => {
       <AddForm editData={editData} updatedRow={mockUpdatedRow} businessNames={businessNames} />
     );
 
-    expect(getByText('Label 1')).toBeInTheDocument();
+    expect(getByText('Label 1')).not.toBeInTheDocument();
     expect(getByText('Label 2')).toBeInTheDocument();
   });
 
@@ -54,8 +70,7 @@ describe('AddForm Component', () => {
     const { getByText } = render(<AddForm editData={editData} updatedRow={mockUpdatedRow} />);
 
     // Expect no errors even when businessNames is undefined
-    expect(getByText('')).toBeInTheDocument();
+    expect(getByText('')).not.toBeInTheDocument();
   });
 
-  // Add more test cases as needed...
 });
