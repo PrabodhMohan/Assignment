@@ -1,112 +1,313 @@
- {
-  "name": "axp-regulatory-reporting-compute-engine",
-  "version": "1.0.0",
-  "description": "Amex internal UI application to perform CRUD operation and rule based calculation on Oracle database. The short term goal is to enable Business team to create, updated and delete database driven rules.",
-  "contributors": [
-    "Vikram Solanki <vikram.s.solanki1@aexp.com>",
-    "Prashant Tyagi <prashant.tyagi4@aexp.com>"
-  ],
-  "license": "UNLICENSED",
-  "scripts": {
-    "start": "one-app-runner",
-    "prebuild": "npm run clean",
-    "build": "bundle-module --dev",
-    "watch:build": "bundle-module --dev --watch",
-    "live:build": "bundle-module --dev --live",
-    "clean": "rimraf build",
-    "prepare": "husky install && npm run build && npm run test:unit && npm run test:lint -- --fix && npm run test:browser",
-    "pretest:browser": "cross-env NODE_ENV=production npm run build && create-runner-env && one-app-runner-test",
-    "test": "npm run test:lint && npm run test:unit && npm run test:browser",
-    "test:watch": "jest --watch",
-    "test:browser": "jest /browser/ --preset @americanexpress/jest-preset-browser --runInBand",
-    "test:lint": "eslint --ignore-path .gitignore --ext js,jsx,snap .",
-    "test:unit": "jest --testPathIgnorePatterns /browser/",
-    "predev": "npm run build",
-    "dev": "concurrently --names \"one-app-runner,watch:build\" -c \"green,yellow\" \"npm start\" \"npm run watch:build\""
-  },
-  "one-amex": {
-    "app": {
-      "compatibility": "5.x || 6.x"
-    },
-    "bundler": {
-      "performanceBudget": 1200000
-    },
-    "product-contacts": [
-      "Vikram Solanki <vikram.s.solanki1@aexp.com>",
-      "Prashant Tyagi <prashant.tyagi4@aexp.com>"
-    ],
-    "runner": {
-      "modules": [
-        "."
-      ],
-      "rootModuleName": "axp-regulatory-reporting-compute-engine",
-      "moduleMapUrl": "https://cdaas-dev.aexp.com/cdaas/one-app/map/epaas-gh23-14-intra-gh23-14-e1/module-map.json",
-      "dockerImage": "artifactory.aexp.com/dockerproxy/oneamex/one-app-dev:6",
-      "envVars": {
-        "ONE_CONFIG_ENV": "e1"
-      }
-    },
-    "risk": {
-      "level": "low"
+ import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import {
+  IconPlus,
+  IconEdit,
+  IconTrash,
+  IconCopy,
+  IconDownload,
+} from '@americanexpress/dls-icons';
+import {
+  DataTableV2, DataTableRowV2, DataTableHeadV2, DataTableHeadCellV2,
+  DataTableBodyV2, DataTableCellV2, Label, Select, SelectOption, Pagination,
+  ButtonTertiary, DialogBox, DialogBoxHeader, DialogBoxBody, Button,
+} from '@americanexpress/dls-react';
+import AddForm from './AddForm';
+import ModalRMS from './ModalRMS';
+import businessNames from '../json/businessNames.json';
+import { newRecord } from './constants';
+
+const CheckableDataTable = ({
+  tableData,
+  striped,
+  bordered,
+  small,
+  checkable,
+}) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [showModal, setShowModal] = useState(false);
+  const [actionType, setActionType] = useState('');
+  const [editRowData, setEditRowData] = useState({});
+  const [isSingleRowChecked, setisSingleRowChecked] = useState(false);
+  const [disableDeleteBtn, setDisableDeleteBtn] = useState(true);
+
+  const totalRows = tableData.length;
+  const totalPages = Math.ceil(totalRows / itemsPerPage);
+  const indexOfLastRow = currentPage * itemsPerPage;
+  const indexOfFirstRow = indexOfLastRow - itemsPerPage;
+  const data = tableData.slice(indexOfFirstRow, indexOfLastRow);
+  const [currentRows, setCheckedData] = useState(data);
+  const [selectedRowIndex, setSelectedRowIndex] = useState(0);
+  const [newRow, setNewRow] = useState({});
+
+  const tableHeader = Object.keys(tableData[0]);
+  let updatedRow = {};
+
+  useEffect(() => {
+    setCheckedData(data);
+  }, [currentPage, itemsPerPage]);
+
+  useEffect(() => {
+    const filteredCheckedRows = currentRows.filter((row) => Object.prototype.hasOwnProperty.call(row, 'checked') && row.checked);
+    if (filteredCheckedRows.length === 1) {
+      setisSingleRowChecked(true);
+      setEditRowData(filteredCheckedRows[0]);
+    } else {
+      setisSingleRowChecked(false);
     }
-  },
-  "dependencies": {
-    "@americanexpress/content-security-policy": "^3.34.0",
-    "@americanexpress/dls-icons": "^1.2.1",
-    "@americanexpress/dls-react": "^1.32.2",
-    "@americanexpress/one-app-ducks": "^4.4.3",
-    "@americanexpress/one-app-module-wrapper": "^3.5.0",
-    "@americanexpress/one-app-router": "^1.2.1",
-    "@reduxjs/toolkit": "^2.0.1",
-    "holocron": "^1.8.2",
-    "prop-types": "^15.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0",
-    "react-intl": "^5.25.1",
-    "redux": "^4.2.1"
-  },
-  "devDependencies": {
-    "@americanexpress/jest-preset-browser": "^6.0.2",
-    "@americanexpress/one-amex-test-utils": "^9.2.0",
-    "@americanexpress/one-app-bundler": "^6.21.4",
-    "@americanexpress/one-app-runner": "^6.16.0",
-    "@babel/polyfill": "^7.12.1",
-    "@commitlint/cli": "^17.8.1",
-    "@commitlint/config-conventional": "^17.8.1",
-    "@testing-library/react": "^12.1.5",
-    "amex-jest-preset-react": "^8.1.0",
-    "babel-eslint": "^10.1.0",
-    "babel-preset-amex": "^3.6.1",
-    "concurrently": "^6.5.1",
-    "cross-env": "^7.0.3",
-    "eslint": "^7.32.0",
-    "eslint-config-amex": "^15.3.2",
-    "eslint-plugin-jest": "^24.7.0",
-    "eslint-plugin-jest-dom": "^3.9.4",
-    "husky": "^7.0.4",
-    "jest": "^27.5.1",
-    "jest-image-snapshot": "^4.5.1",
-    "prettier": "^2.8.8",
-    "rimraf": "^3.0.2"
-  },
-  "jest": {
-    "preset": "amex-jest-preset-react",
-    "setupFiles": [
-      "./test-setup.js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 80,
-        "branches": 80,
-        "functions": 80,
-        "lines": 80
+    if (filteredCheckedRows.length > 0) {
+      setDisableDeleteBtn(false);
+    } else {
+      setDisableDeleteBtn(true);
+    }
+  }, [currentRows]);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handleRowsPerPageChange = (e) => {
+    setItemsPerPage(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleRowCheckChange = (i, { id }) => {
+    setSelectedRowIndex(id);
+    const newState = [
+      ...currentRows,
+    ];
+
+    setCheckedData(() => {
+      newState[id].checked = !currentRows[id].checked;
+      return newState;
+    });
+  };
+
+  // const handleHeaderRowCheckChange = (event, {
+  //   checked,
+  // }) => {
+  //   const newState = [
+  //     ...currentRows,
+  //   ];
+  //   setCheckedData(() => {
+  //     newState.map((rowData) => {
+  //       rowData.checked = !checked;
+  //       return rowData;
+  //     });
+  //     return newState;
+  //   });
+  // };
+
+  const handleOnActionClick = (action) => {
+    if (action === 'Add') {
+      const addRow = Object.fromEntries(Object.keys(currentRows[0]).map((key) => [key, '']));
+      setNewRow(addRow);
+    }
+    const btnAction = action !== 'save' && action !== 'close' ? action : '';
+    setActionType(btnAction);
+
+    if (action === 'save') {
+      if (actionType === 'Add' || actionType === 'Copy') {
+        if (actionType === 'Copy') {
+          delete updatedRow.checked;
+        }
+        setCheckedData((current) => [...current, updatedRow]);
+      } else if (actionType === 'Edit') {
+        const newState = [
+          ...currentRows,
+        ];
+        setCheckedData(() => {
+          newState[selectedRowIndex] = updatedRow;
+          return newState;
+        });
       }
-    },
-    "snapshotSerializers": []
-  },
-  "engines": {
-    "node": "=18.x.x",
-    "npm": "=9.x.x"
-  }
-}
+    }
+    setShowModal(!showModal);
+  };
+
+  const getUpdatedRow = (row) => {
+    updatedRow = row;
+  };
+
+  const handleDelete = () => {
+    const finalData = currentRows.filter((row) => !row.checked);
+    setCheckedData(finalData);
+    setShowModal(!showModal);
+  };
+
+  const formComponent = (
+    <AddForm
+      tableHeaderProps={data.columnHeader}
+      editData={actionType === 'Add' ? newRow : editRowData}
+      actionType={actionType}
+      updatedRow={getUpdatedRow}
+    />
+  );
+
+  return (
+    <div>
+      <div className="margin-1-tb">
+        <ButtonTertiary
+          size="sm"
+          icon={<IconPlus size="xs" title="add" />}
+          onClick={() => handleOnActionClick('Add')}
+        >
+          Add
+        </ButtonTertiary>
+        <ButtonTertiary
+          disabled={!isSingleRowChecked}
+          size="sm"
+          onClick={() => handleOnActionClick('Edit')}
+          icon={<IconEdit size="xs" title="edit" />}
+        >
+          Edit
+        </ButtonTertiary>
+        <ButtonTertiary
+          size="sm"
+          disabled={disableDeleteBtn}
+          onClick={() => handleOnActionClick('Delete')}
+          icon={<IconTrash size="xs" title="delete" />}
+        >
+          Delete
+        </ButtonTertiary>
+        <ButtonTertiary
+          disabled={!isSingleRowChecked}
+          size="sm"
+          onClick={() => handleOnActionClick('Copy')}
+          icon={<IconCopy size="xs" title="copy" />}
+        >
+          Copy
+        </ButtonTertiary>
+        <ButtonTertiary
+          size="sm"
+          icon={<IconDownload size="xs" title="exportData" />}
+        >
+          Export Data
+        </ButtonTertiary>
+      </div>
+      <div className="scroll-x">
+        <DataTableV2
+          id="tablev2-checkbox-instance"
+          checkable={checkable}
+          onRowCheckChange={handleRowCheckChange}
+          // onHeaderRowCheckChange={handleHeaderRowCheckChange}
+          striped={striped}
+          bordered={bordered}
+          small={small}
+          className="text-nowrap"
+        >
+          <DataTableHeadV2>
+            <DataTableRowV2
+              checkboxLabel="Select all"
+              id="tablev2-checkbox-header-row"
+            >
+              {tableHeader.map((header) => (
+                <DataTableHeadCellV2 style={{ border: '0.0625rem solid #d6d6d6' }} key={header}>
+                  {businessNames[header]}
+                </DataTableHeadCellV2>
+              ))}
+            </DataTableRowV2>
+          </DataTableHeadV2>
+          <DataTableBodyV2>
+            {currentRows.map((rowData, index) => (
+              <DataTableRowV2
+                key={String(rowData.nReportCondId)}
+                id={String(index)}
+                rowIndex={index + 2}
+                checked={rowData.checked}
+                checkboxLabel={String(index)}
+              >
+                {Object.entries(rowData).map(([key, value]) => (
+                  <DataTableCellV2 style={{ border: '0.0625rem solid #d6d6d6' }} key={key}>{String(value)}</DataTableCellV2>
+                ))}
+              </DataTableRowV2>
+            ))}
+          </DataTableBodyV2>
+        </DataTableV2>
+      </div>
+
+      <div className="flex flex-align-center flex-justify-between pad-1-tb">
+        <div>
+          <Label htmlFor="dt-v2-p-select">Rows per page</Label>
+          <Select
+            id="dt-v2-p-select"
+            onChange={(e) => handleRowsPerPageChange(e)}
+            value={itemsPerPage}
+            aria-label="rowPerPageNumber"
+          >
+            <SelectOption value="5">5</SelectOption>
+            <SelectOption value="7">7</SelectOption>
+            <SelectOption value="10">10</SelectOption>
+          </Select>
+        </div>
+        <Pagination
+          theme={{
+            background: 'transparent',
+          }}
+          selected={currentPage}
+          onChange={handlePageChange}
+          total={totalPages}
+        />
+      </div>
+      <div>
+        {showModal && (
+        <div>{actionType === 'Delete' ? (
+          <DialogBox onClose={() => handleOnActionClick()} id="dialog-box-example">
+            <DialogBoxHeader id="dialog-box-header">
+              <p role="heading" aria-level="2">
+                Are you sure want to delete these ids?
+              </p>
+            </DialogBoxHeader>
+            <DialogBoxBody id="dialog-box-body">
+              <div className="flex" style={{ gap: '10px' }}>
+                <Button
+                  styleType="primary"
+                  className="margin-auto-lr margin-1-b margin-3-t"
+                  onClick={handleDelete}
+                >
+                  Delete
+                </Button>
+                <Button
+                  styleType="primary"
+                  className="margin-auto-lr margin-1-b margin-3-t"
+                  onClick={() => setShowModal(!showModal)}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </DialogBoxBody>
+          </DialogBox>
+        ) : (
+          <ModalRMS
+            showRef={showModal}
+            handleOnActionClick={handleOnActionClick}
+            title={actionType + newRecord.addRecordTitle}
+            tableHeader={data.columnHeader}
+          >
+            {formComponent}
+          </ModalRMS>
+        )}
+        </div>
+        ) }
+      </div>
+    </div>
+  );
+};
+
+CheckableDataTable.propTypes = {
+  striped: PropTypes.bool,
+  bordered: PropTypes.bool,
+  small: PropTypes.bool,
+  checkable: PropTypes.bool,
+  tableData: PropTypes.array,
+};
+
+CheckableDataTable.defaultProps = {
+  striped: false,
+  bordered: true,
+  small: true,
+  checkable: true,
+};
+
+export default CheckableDataTable;
