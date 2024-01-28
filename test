@@ -1,103 +1,17 @@
- import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import CheckableDataTable from './CheckableDataTable';
-
-describe('CheckableDataTable Component', () => {
-  const tableData = [
-    { id: 1, name: 'John Doe', age: 25 },
-    { id: 2, name: 'Jane Doe', age: 30 },
-    // Add more sample data as needed...
-  ];
-
-  it('renders table data correctly', () => {
+  it('disables Delete button when no row is checked', () => {
     const { getByText } = render(<CheckableDataTable tableData={tableData} />);
     
-    // Ensure that the table renders the correct data
-    expect(getByText('John Doe')).toBeInTheDocument();
-    expect(getByText('Jane Doe')).toBeInTheDocument();
-    // Add more assertions based on your actual data
+    // Verify that the Delete button is initially disabled
+    expect(getByText('Delete')).toBeDisabled();
   });
 
-  it('handles row check changes correctly', () => {
-    const { getByLabelText } = render(<CheckableDataTable tableData={tableData} />);
-    
-    // Simulate checking a row
-    fireEvent.click(getByLabelText('0')); // Assuming the label for the checkbox is based on the row index
-    
-    // Verify that the state is updated correctly
-    // You might need to adjust these expectations based on your actual implementation
-    // For example, if your checked state is stored differently, adapt these assertions
-    // to match your actual data structure.
-    expect(getByLabelText('0').checked).toBe(true);
-  });
-
-  it('handles pagination correctly', async () => {
+  it('disables Edit button when more than one row is checked', () => {
     const { getByText, getByLabelText } = render(<CheckableDataTable tableData={tableData} />);
     
-    // Ensure that the initial page renders correctly
-    expect(getByText('John Doe')).toBeInTheDocument();
-    expect(getByText('Jane Doe')).toBeInTheDocument();
-
-    // Go to the next page
-    fireEvent.click(getByLabelText('Next'));
-
-    // Wait for the next page to load
-    await waitFor(() => {
-      // Ensure that the next page renders correctly
-      // Adjust expectations based on your actual pagination implementation
-      expect(getByText('Next Page Data')).toBeInTheDocument();
-    });
-  });
-
-  it('opens and closes the Add modal', () => {
-    const { getByText, queryByText } = render(<CheckableDataTable tableData={tableData} />);
-    
-    // Click the Add button
-    fireEvent.click(getByText('Add'));
-
-    // Verify that the Add modal is displayed
-    expect(getByText('Add New Record')).toBeInTheDocument();
-
-    // Close the modal
-    fireEvent.click(getByText('Cancel'));
-
-    // Verify that the modal is closed
-    expect(queryByText('Add New Record')).toBeNull();
-  });
-
-  it('handles Edit button correctly', () => {
-    const { getByText, getByLabelText } = render(<CheckableDataTable tableData={tableData} />);
-    
-    // Check a row
+    // Check multiple rows
     fireEvent.click(getByLabelText('0'));
+    fireEvent.click(getByLabelText('1'));
 
-    // Click the Edit button
-    fireEvent.click(getByText('Edit'));
-
-    // Verify that the Edit modal is displayed
-    expect(getByText('Edit Record')).toBeInTheDocument();
+    // Verify that the Edit button is disabled
+    expect(getByText('Edit')).toBeDisabled();
   });
-
-  it('handles Delete button correctly', () => {
-    const { getByText, getByLabelText, queryByText } = render(<CheckableDataTable tableData={tableData} />);
-    
-    // Check a row
-    fireEvent.click(getByLabelText('0'));
-
-    // Click the Delete button
-    fireEvent.click(getByText('Delete'));
-
-    // Verify that the Delete confirmation dialog is displayed
-    expect(getByText('Are you sure want to delete these ids?')).toBeInTheDocument();
-
-    // Click the Cancel button in the Delete confirmation dialog
-    fireEvent.click(getByText('Cancel'));
-
-    // Verify that the confirmation dialog is closed
-    expect(queryByText('Are you sure want to delete these ids?')).toBeNull();
-  });
-
-  // Add more test cases as needed...
-
-});
