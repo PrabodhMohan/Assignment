@@ -1,18 +1,110 @@
  import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import CheckboxList from '../../../src/components/Common/CheckboxList';
+import CheckableDataTable from '../../../src/components/Common/CheckableDataTable';
 
-describe('CheckboxList', () => {
-  it('should render CheckboxList with checked.', () => {
-    render(<CheckboxList list={[{ id: 1, name: 'test', checked: false }]} />);
-    const btnCheckbox = screen.getByRole('checkbox', { name: 'test' });
-    fireEvent.click(btnCheckbox, { name: 'test' });
-    expect(screen.getByRole('checkbox', { name: 'test' })).toBeChecked();
+describe('CheckableDataTable', () => {
+  const CheckableData = [
+    {id:1,name:'John Doe',age:25},
+    {id:2,name:'John Doe',age:30},
+
+  ];
+
+  it('should render add modal pop up When click on Add button.', () => {
+    render(
+      <CheckableDataTable
+        tableData={[{ nReportCondId: 1, vReportName: 'test' }]}
+      />
+    );
+    const addBtn = screen.getByRole('button', { name: 'add Add' });
+    fireEvent.click(addBtn);
+    expect(screen.getByRole('heading')).toHaveTextContent('Add Record');
   });
-  it('should render CheckboxList with unchecked.', () => {
-    render(<CheckboxList list={[{ id: 1, name: 'test', checked: true }]} />);
-    const btnCheckbox = screen.getByRole('checkbox', { name: 'test' });
-    fireEvent.click(btnCheckbox, { name: 'test' });
-    expect(screen.getByRole('checkbox', { name: 'test' })).not.toBeChecked();
+
+  it('should render Edit modal pop up When click on Edit button.', () => {
+    render(
+      <CheckableDataTable
+        tableData={[{ nReportCondId: 1, vReportName: 'test' }]}
+      />
+    );
+    const checkboxBtn = screen.getByRole('checkbox', {
+      name: '0',
+      checked: false,
+    });
+    fireEvent.click(checkboxBtn);
+    const editBtn = screen.getByRole('button', { name: 'edit Edit' });
+    fireEvent.click(editBtn);
+    expect(screen.getByRole('heading')).toHaveTextContent('Edit Record');
+    const saveBtn = screen.getByRole('button', { name: 'Save' });
+    fireEvent.click(saveBtn);
+    expect(editBtn).toHaveTextContent('Edit');
+  });
+
+  it('should render Copy modal pop up When click on Copy button.', () => {
+    render(
+      <CheckableDataTable
+        tableData={[{ nReportCondId: 1, vReportName: 'test' }]}
+      />
+    );
+    const checkboxBtn = screen.getByRole('checkbox', {
+      name: '0',
+      checked: false,
+    });
+    fireEvent.click(checkboxBtn);
+    const editBtn = screen.getByRole('button', { name: 'copy Copy' });
+    fireEvent.click(editBtn);
+    expect(screen.getByRole('heading')).toHaveTextContent('Copy Record');
+  });
+
+  it('should render Delete modal pop up When click on Delete button.', () => {
+    render(
+      <CheckableDataTable
+        tableData={[{ nReportCondId: 1, vReportName: 'test' }]}
+      />
+    );
+    const checkboxBtn = screen.getByRole('checkbox', {
+      name: '0',
+      checked: false,
+    });
+    fireEvent.click(checkboxBtn);
+    const editBtn = screen.getByRole('button', { name: 'delete Delete' });
+    fireEvent.click(editBtn);
+    expect(screen.getByRole('heading')).toHaveTextContent('Are you sure want to delete these ids?');
+  });
+
+  it('should call perpagelist method When click on PerPageList', () => {
+    render(
+      <CheckableDataTable
+        tableData={[{ nReportCondId: 1, vReportName: 'test' }]}
+      />
+    );
+    const btnPagination = screen.getByRole('option', { name: '10' });
+    fireEvent.click(btnPagination, { target: { value: 10 } });
+    expect(screen.getByLabelText('rowPerPageNumber')).toHaveTextContent('10');
+  });
+
+  test('handles page change', () => {
+    render(<CheckableDataTable tableData={CheckableData} />);
+    // Trigger a page change
+    fireEvent.click(screen.getByText('2')); // Example: assuming there is a pagination with '2' as the second page
+    // Add assertions based on the expected behavior after the page change
+    expect(screen.getByText('2')).toHaveClass('selected'); // Assuming there is a visual indication for the selected page
+    // Add more assertions based on your UI
+  });
+
+  test('handles row check change', () => {
+    render(<CheckableDataTable tableData={CheckableData} />);
+    // Trigger a row check change
+    fireEvent.click(screen.getByLabelText('Select all'));
+    // Add assertions based on the expected behavior after the row check change
+    expect(screen.getByLabelText('Select all')).toBeChecked();
+    // Add more assertions based on your UI
+  });
+
+
+  test.only('renders CheckableDataTable component', () => {
+    render(<CheckableDataTable tableData={CheckableData} />);
+    // Add assertions based on your component rendering
+    expect(screen.getByText('Add')).toBeInTheDocument();
+    // Add more assertions based on your UI
   });
 });
