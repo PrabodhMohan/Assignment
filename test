@@ -1,34 +1,18 @@
- import React, { useState } from 'react';
-import {
-  Checkbox,
-} from '@americanexpress/dls-react';
+ import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import CheckboxList from '../../../src/components/Common/CheckboxList';
 
-const CheckboxList = ({ list }) => {
-  const [listItem, setListItem] = useState(list);
-
-  const handleCheckBoxClick = (itemClicked) => {
-    const newList = listItem.map((item) => {
-      if (item.name === itemClicked.name) {
-        item.checked = !item.checked;
-      }
-      return item;
-    });
-    setListItem(newList);
-  };
-  return (
-    listItem.map((item) => (
-      <Checkbox
-        aria-describedby="check-alert"
-        checked={item.checked}
-        id={item.name}
-        key={item.name}
-        label={item.name}
-        name={item.name}
-        onChange={() => handleCheckBoxClick(item)}
-      />
-    )
-    )
-  );
-};
-
-export default CheckboxList;
+describe('CheckboxList', () => {
+  it('should render CheckboxList with checked.', () => {
+    render(<CheckboxList list={[{ id: 1, name: 'test', checked: false }]} />);
+    const btnCheckbox = screen.getByRole('checkbox', { name: 'test' });
+    fireEvent.click(btnCheckbox, { name: 'test' });
+    expect(screen.getByRole('checkbox', { name: 'test' })).toBeChecked();
+  });
+  it('should render CheckboxList with unchecked.', () => {
+    render(<CheckboxList list={[{ id: 1, name: 'test', checked: true }]} />);
+    const btnCheckbox = screen.getByRole('checkbox', { name: 'test' });
+    fireEvent.click(btnCheckbox, { name: 'test' });
+    expect(screen.getByRole('checkbox', { name: 'test' })).not.toBeChecked();
+  });
+});
