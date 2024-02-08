@@ -1,11 +1,1 @@
- test('handles row check change', () => {
-  render(<CheckableDataTable tableData={tableData} />);
-  // Trigger a row check change
-  fireEvent.click(screen.getByLabelText('Select all'));
-  // Add assertions based on the expected behavior after the row check change
-  const checkboxes = screen.getAllByLabelText('checkbox');
-  checkboxes.forEach((checkbox) => {
-    expect(checkbox).toBeChecked();
-  });
-  // Add more assertions based on your UI
-});
+ https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fmeetup-join%2F19%3Ameeting_Mjg3M2U3ODgtY2U5ZS00M2Q2LWI4NTItZTZjZTEwODljMDFl%40thread.v2%2F0%3Fcontext%3D%257b%2522Tid%2522%253a%2522dc546f40-1115-4c67-b3bf-6aac8454ea3e%2522%252c%2522Oid%2522%253a%25223198343f-a4a7-4e8e-9460-b5ffdb729c5e%2522%257d%26anon%3Dtrue&type=meetup-join&deeplinkId=a399bc7c-d718-4d04-9d09-4a0cf8ac4411&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true
