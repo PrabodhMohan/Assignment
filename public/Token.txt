@@ -1,0 +1,151 @@
+Token
+ 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
+-------------------------------------------------------
+ff344885a8624460a855540c6592698d2f1812843   used for access the GitHun API
+-------------------------------------------------------
+
+
+ssh-keygen -t ed25519 -C "PrabodhMohan.Bansal@aexp.com"
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID20XlgkO3xBpWn6Mu58iE0PI66Nsyt1w0LvAUdendma PrabodhMohan.Bansal@aexp.com
+
+
+
+git@github.aexp.com:amex-eng/axp-regulatory-reporting-compute-engine.git
+
+
+
+--------------------------------------- 
+https://one-app.aexp.com/docs/documentation/getting-started/initial-setup-windows
+
+Installation and Setup of Software  :-
+1) https://enterprise-confluence.aexp.com/confluence/pages/viewpage.action?spaceKey=GHE&title=Github+Repo+Clone   --> Reference ..
+2) https://github.aexp.com/settings/tokens   -- tokens 
+   https://github.aexp.com/settings/tokens/new
+
+3) settings --> 
+
+feature/sidebarlogin
+
+Take permissions from Vikram/ ankur
+3) https://github.aexp.com/amex-eng/axp-regulatory-reporting-compute-engine  -->  dropdown for code 
+4) select ssh --> git@github.aexp.com:amex-eng/axp-regulatory-reporting-compute-engine.git
+5) C:\Users\pbans45>git clone git@github.aexp.com:amex-eng/axp-regulatory-reporting-compute-engine.git
+6) C:\Users\pbans45> cd axp-regulatory-reporting-compute-engine
+7) C:\Users\pbans45\axp-regulatory-reporting-compute-engine>npm install
+8)
+----------Environment Settings------------- 
+set NODE_ENV=development
+set HTTP_PROXY=http://proxy.aexp.com:8080
+set HTTPS_PROXY=http://proxy.aexp.com:8080
+set NO_PROXY=.aexp.com,localhost
+---------------------------------- 
+9) C:\Users\pbans45\axp-regulatory-reporting-compute-engine>npm start
+
+---------------------------------------
+
+---------------------------------------------------------------------------------------
+Readings  shoeb :-
+https://one-app.aexp.com/docs/one-app-u/intro
+https://one-app.aexp.com/docs/documentation/getting-started/initial-setup-windows
+https://one-app.aexp.com/docs/one-app-u/Intro-To-Project/intro-to-project
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+Megha 
+https://design.americanexpress.com/language/react/?path=/story/getting-started-introduction--page
+https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable
+---------------------------------------------------------------------------------------
+Jayanthi
+https://rally1.rallydev.com/#/607702409239d/iterationstatus
+---------------------------------------------------------------------------------------
+need to create a state or variable so this state has to be updated when we change the checkbox
+--parent --> child
+https://thesquarehome.americanexpress.com/esc
+
+
+Mr Vikram
+
+new request submit
+
+Pending with l1 approver
+list of request 
+approve/ rejected 
+
+Pending with Executor
+accept/reject/reassign the request  --> reassign the request
+
+
+
+src\modules\iris\IrisRequestDetail\IrisRequestDetail.jsx   -->IrisRequest   1 page 
+src\config\forms\formIRISRegister.json
+C:\Project1\fde-jbpm_bpaas-ui-master\src\config\forms\formFincatPRApproval.json
+src\modules\iris\IrisRequestDetail\IrisRequestDetail.jsx  --> IrisRequestDetail.jsx
+src\modules\fincat\new-request\linkedItems.js
+
+src\modules\famus\new-request\index.js  --> FAMUS DATA UPLOAD FORM  -- search by FAMUS DATA 
+
+https://enterprise-confluence.aexp.com/confluence/display/GAS/Finance+BPM+UI+Architecture
+https://enterprise-confluence.aexp.com/confluence/display/NGDM/NAF+UI+Code+flow
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+Git commit etc-->
+https://enterprise-confluence.aexp.com/confluence/display/NGDM/Bitbucket+-+OFSAA+Models+-+Check+in+-+Check+out
+---------------------------------------------------------------------------------------
+
+
+
+ 
+ 
+
+
+one-app is the web server that handles the bundle fetching of our modules and serves them to the client. 
+It requires a root module to start, and that root module can configure different options for the server.
+
+
+ 
+ 
+
+
+for error removal -->
+https://one-app.aexp.com/docs/documentation/getting-started/initial-setup-windows
+
+
+
+---------------------------------- 
+set NODE_ENV=development
+set HTTP_PROXY=http://proxy.aexp.com:8080
+set HTTPS_PROXY=http://proxy.aexp.com:8080
+set NO_PROXY=.aexp.com,localhost
+
+https://github.aexp.com/amex-eng/axp-regulatory-reporting-compute-engine
+---------------------------------- 
+
+ 
+------------------------------------------------------------------------
+Prabodh 
+------------------------------------------------------------------------
+src\components\Common\ReportConfigurationForm.jsx
+src\components\json\navigation.json  --> left panel links
+--------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------
+Megha
+--------------------------------------------------------------------------------------------------
+https://design.americanexpress.com/language/react/?path=/story/getting-started-introduction--page
+Division of screen
+https://matthewjamestaylor.com/2-column-layouts#google_vignette
+https://www.freepik.com/search?format=search&last_filter=query&last_value=delete&query=delete&type=icon
+--------------------------------------------------------------------------------------------------
+https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable
+https://stackoverflow.com/questions/37427508/react-changing-an-uncontrolled-input
+
+https://thesquare.americanexpress.com/sites/business-unit/technology/agile-management-product-operations-ampo/rally/SitePageModern/373514/home-page
+
+-------------------------------------------------------------------------------------
+Shoeb -- environmental Variables
+-------------------------------------------------------------------------------------
+https://one-app.aexp.com/docs/documentation/getting-started/initial-setup-windows
+-------------------------------------------------------------------------------------
+json settings
+https://jsoneditoronline.org/#left=local.yeqazo&right=local.jaziqo
+collabedit

@@ -1,0 +1,62 @@
+
+To go to feature branch and take pull:-
+-------------------------------------
+
+1) git clone git@github.aexp.com:amex-eng/axp-regulatory-reporting-compute-engine.git
+2) cd axp-regulatory-reporting-compute-engine
+3) C:\Users\pbans45\axp-regulatory-reporting-compute-engine>npm install
+
+git fetch 
+
+
+1) git branch
+2) https://github.aexp.com/amex-eng/axp-regulatory-reporting-compute-engine
+   first go to git checkout feature/side-nav-and-rms-page  from drop down 
+3    go to feature/side-nav-and-rms-page from left side dropdown
+
+4   then create my own branch feature/sidebarlogin
+3) git switch feature/sidebarlogin  --> switched to feature/sidebarlogin
+4) git branch
+    feature/sidebarlogin     1
+    main
+5) git pull
+
+----------------------------------
+1) git clone git@github.aexp.com:amex-eng/axp-regulatory-reporting-compute-engine.git
+2) cd axp-regulatory-reporting-compute-engine
+3) C:\Users\pbans45\axp-regulatory-reporting-compute-engine>npm install
+--
+1) git branch
+2) https://github.aexp.com/amex-eng/axp-regulatory-reporting-compute-engine
+go to feature/side-nav-and-rms-page from left side dropdown
+then create my own branch feature/leftmenu_side_rms_new  --> new created.
+git fetch 
+
+
+feature/side-nav-and-rms-page
+bit.ly/3u0hiVO
+https://skillful-pigment-798.notion.site/Prabodh-ece4b1d8971a4e779fec9530d532931b
+----------------------------------
+
+Utility classes
+
+css-1q1ibwf-Icon
+https://design.americanexpress.com/language/style/utility-classes/
+C:\Users\pbans45\leftside_rms\axp-regulatory-reporting-compute-engine>
+
+npm run test:unit
+git pull origin  feature/side-nav-and-rms-page  --> pull from this branch to my feature branch.
+----------------------------------------------------------
+path --> leftside_rmsnew
+git checkout feature/side-nav-and-rms-page  a
+git switch feature/login-sidebarnew   b
+
+pbansal@intraedge.com
+--------------------------------------------------------------------
+C:\Users\pbans45>git clone git@github.aexp.com:amex-eng/axp-regulatory-reporting-compute-engine.git
+
+C:\Users\pbans45\left_side_rmsnew  -- path
+
+1) C:\Users\pbans45> cd axp-regulatory-reporting-compute-engine
+2) C:\Users\pbans45\axp-regulatory-reporting-compute-engine>npm install
+

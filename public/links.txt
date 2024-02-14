@@ -1,0 +1,116 @@
+-------------------------------------------------------------------------
+Timesheet :-
+https://pmt.tims.intra.aexp.com/niku/nu#action:timeadmin.timesheetBrowserReturn
+https://stock.adobe.com/search?orientation=square&safe_search=1&order=relevance&get_facets=1&k=alert%20%20icons&filters[content_type:zip_vector]=1&filters[orientation]=square&clickref=1011lyaFviqg&mv=affiliate&mv2=Freepik&as_camptype=&as_channel=affiliate&as_source=partnerize&as_campaign=Flaticon&as_content=popup&as_audience=srp&sdid=6WTV6YJ5
+
+
+PrabodhMohan.Bansal@aexp.com
+Connecting toNavigator
+Sign in with your account to access Navigator
+https://aexp.okta.com/app/cornerstone/exkjd6kxru8ZGaaXI0x7/sso/saml
+------------------------------------------------------------------------
+Meetings
+https://amex.webex.com/webappng/sites/amex/meeting/home
+------------------------------------------------------------------------
+
+mandatory trg  000 
+https://thesquarehome.americanexpress.com/esc
+https://amex.csod.com/LMS/catalog/Welcome.aspx?tab_page_id=-67&tab_id=-1
+square.
+
+GRL 2023 Tier 2 Third-Party Management Policy (AEMP 10) --> completed 
+
+
+download 
+0008004402473   training no 
+https://amex.csod.com/phnx/driver.aspx?routename=Social/UniversalProfile/Transcript&TargetUser=526403&preSelectedCategoryId=3#loaded
+https://thesquarehome.americanexpress.com/esc
+0124-6744128  for transferring mail to other non aexp
+9810795067
+
+
+https://flatuicolors.com/palette/defo   
+-------------------------------------------------------------------------
+PrabodhMohan.Bansal@aexp.com
+https://github.aexp.com/amex-eng/axp-regulatory-reporting-compute-engine/pull/15  --> shoeb
+https://flatuicolors.com/  --> colours
+C7217962
+Credentials:-
+User    : pbans45
+Password: Pbmohal@234
+-------------------------------------------------------------------------
+https://one-app.aexp.com/docs/documentation/getting-started/initial-setup-windows
+
+OneApp link for de-bugging functions 
+https://one-dev.aexp.com/one-data/developer-guide/troubleshooting/debugging-and-troub[…]html?linknav=Left-Nav-One-Data-Debugging-And-Troubleshooting
+' can you please on priority fix these vulnerabilities in our repo.
+ This is now showing up in dotconnector and started hurting our card id health status.
+9:46
+https://dotconnector.aexp.com/applications/600002534?tab=dependencies&filterByRisk=Medium
+9:46
+https://dotconnector.aexp.com/applications/600002534?tab=dependencies&filterByRisk=Critical
+9:46
+https://dotconnector.aexp.com/applications/600002534?tab=dependencies&filterByRisk=High
+
+
+
+
+https://aexp.okta.com/app/cornerstone/exkjd6kxru8ZGaaXI0x7/sso/saml
+
+Meeting link:
+https://amex.webex.com/amex/j.php?MTID=m306d2b163c929b64edb47d68fcd66efa
+
+Meeting number:
+2538 519 4392
+
+Meeting password:
+6kmMCQBC*26
+
+Join from a video or application
+Dial 25385194392@amex.webex.com
+You can also dial 173.243.2.68 and enter your meeting number.
+
+
+Join by phone
++1-650-479-3208 United States Toll
+Access code: 25385194392
+
+
+Global call-in numbers
+https://amex.webex.com/amex/globalcallin.php?MTID=ma1b69b3262990b414604bfd7b11b1ed1
+
+Toll-free calling restrictions
+https://e-meetings.verizonbusiness.com/global/pdf/Verizon_Audio_Conferencing_Global_Access_Information_August2017.pdf
+
+
+Meeting link:
+https://amex.webex.com/amex/j.php?MTID=m306d2b163c929b64edb47d68fcd66efa
+
+Meeting number:
+2538 519 4392
+
+Meeting password:
+6kmMCQBC*26
+
+Join from a video or application
+Dial 25385194392@amex.webex.com
+You can also dial 173.243.2.68 and enter your meeting number.
+
+
+Join by phone
++1-650-479-3208 United States Toll
+Access code: 25385194392
+
+
+Global call-in numbers
+https://amex.webex.com/amex/globalcallin.php?MTID=ma1b69b3262990b414604bfd7b11b1ed1
+
+Toll-free calling restrictions
+https://e-meetings.verizonbusiness.com/global/pdf/Verizon_Audio_Conferencing_Global_Access_Information_August2017.pdf
+
+
+
+ {
+            "label": "Reporting Conditions",
+            "route": "/usreg/reportingConditions"
+        },

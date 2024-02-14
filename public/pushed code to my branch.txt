@@ -1,0 +1,69 @@
+Pbmohal@234Path :- C:\Users\pbans45\rms_newproject\axp-regulatory-reporting-compute-engine>
+branch- navigation_10jan24
+Web Page --> https://github.aexp.com/amex-eng/axp-regulatory-reporting-compute-engine/pull/20
+--------------------------
+git status
+git branch   
+ -main
+ -navigation_10jan24
+
+git diff
+git status
+git add .
+git status
+git push
+git push --set-upstream origin prabodh_8jan24
+
+git commit -m "navigation and route part" --no-verify
+              
+---------------------------------
+back to my branch and stash
+git checkout  rms_5jan2024
+git stash pop
+----------------------------------------------------------------------------
+rms_newproject   -->for Menu (opens login page) 
+C:\Users\pbans45\rms_newproject\axp-regulatory-reporting-compute-engine>
+prabodh_8jan24 branch    1) Navigation to be done
+----------------------------------------------------------------------------
+C:\Users\pbans45\pm_navigation\axp-regulatory-reporting-compute-engine>
+navigation_10jan24 --> branch   --> pushed  for login, Home page on thursday , 3) [TestCase to be checked]  
+----------------------------------------------------------------------------
+C:\Users\pbans45\leftside_rms\axp-regulatory-reporting-compute-engine>
+On branch feature/sidebarlogin    --> 2) pull required 
+----------------------------------------------------------------------------
+https://flatuicolors.com/palette/defo
+
+--------------------------------------
+push code to my branch only --> Friday 
+C:\Users\pbans45\rms_newproject\axp-regulatory-reporting-compute-engine>
+
+git add --all
+git commit -m "navigation and route part" --no-verify
+git status
+git push
+git push --set-upstream origin prabodh_8jan24
+https://github.aexp.com/amex-eng/axp-regulatory-reporting-compute-engine
+https://github.aexp.com/amex-eng/axp-regulatory-reporting-compute-engine/commit/a848486d669ab2f524841cdca8876c8143f07b92
+--------------------------------------
+git pull origin  feature/side-nav-and-rms-page --> Megha
+
+npm run test:unit
+
+
+Backup of ild login --> Pm_rms
+------------------------------------------------------
+------------------------------------------------------
+
+feature/sidebarlogin   --> git checkout feature/side-nav-and-rms-page   
+git add --all
+git commit -m "Login Page attached to existing navigation" --no-verify
+git status
+git push
+git push --set-upstream origin prabodh_8jan24
+https://github.aexp.com/amex-eng/axp-regulatory-reporting-compute-engine
+
+
+
+
+
+ 

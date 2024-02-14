@@ -1,0 +1,66 @@
+import React from 'react';
+ import userEvent , { render, screen ,waitFor,fireEvent}from  "@testing-library/react";
+import LoginPage from '../../../src/components/LoginPage';
+import "@testing-library/jest-dom";
+
+const mockedOnChange = jest.fn();
+
+describe('LoginPage', () => {
+  it('render loginpage',async()=>{
+    render(<LoginPage />);
+    const buttonElement = screen.getByRole("button");
+    userEvent.click(buttonElement);
+  });
+  it('should show error message when all the fields are not entered',async()=>{
+        render(<LoginPage />);
+        const buttonElement = screen.getByRole("button");
+        await userEvent.click(buttonElement);
+       // const alertElement = screen.getByRole("alert");
+        expect (buttonElement).tobeInTheDocument();  
+  });
+     
+  it('should render Login Page with labels',()=>{
+    render(<LoginPage />);
+    expect(screen.getByRole('heading')).toHaveTextContent('User ID');
+    expect(screen.getByRole('heading')).toHaveTextContent('Password');
+  });
+
+  it('input should be empty initially', async()=>{
+    render(<LoginPage title ="" onChangeHadler={mockedOnChange}/>);
+    const input = screen.getByRole("textbox", { name: /userName/i });
+    expect(input).toHaveValue("");
+  });
+
+  it('should render Login Page with labels',()=>{
+    render(<LoginPage />);
+    expect(screen.getByRole('heading')).toHaveTextContent('User ID');
+    expect(screen.getByRole('heading')).toHaveTextContent('Password');
+  });
+
+  it('input should update by typed text', async()=>{
+       renderComponent("LoginPage");
+       const input = await screen.findByRole("textbox", { name: /userName/i });
+       await waitFor(() => expect(input).toHaveValue("userName"));
+       userEvent.clear(input);
+       expect(input).toHaveValue(""); // error appears here indicating that value was not cleared
+       // userEvent.type(input, "su"); 
+       // await waitFor(() => expect(input).toHaveValue("su"));
+  });
+
+    it('callback function is called on user interactions', async()=>{
+        renderComponent("LoginPage");
+        const input = await screen.findByRole("textbox", { name: /userName/i });
+        userEvent.type(input, "userName");
+        expect(mockedOnChange).toHaveBeenCalledWith("userName");
+    });
+
+   it('should show error message when all the fields are not entered',async()=>{
+   	render(<LoginPage />);
+   	const buttonElement = screen.getByRole("button");
+   	await userEvent.click(buttonElement);
+   	const alertElement = screen.getByRole("alert");
+   	expect (alertElement).tobeInTheDocument();  
+   });
+ });
+
+git stash 

@@ -1,0 +1,137 @@
+import React from 'react';
+import userEvent,{ render, screen ,waitFor,fireEvent}from  "@testing-library/react";
+import LoginPage from '../../../src/components/LoginPage'; 
+import "@testing-library/jest-dom";
+const path = require('path');
+
+
+const mockedOnChange = jest.fn();
+
+
+
+import image1Src from '../../assets/images/molecule.png';
+//import image1Src1 from '../assets/images/AExp.svg';
+
+import image1Src12 from '../assets/images/AExp.svg';
+//import americanImage from 'src/assets/images/AExp.svg';
+
+//import americanImage from 'src/assets/images/AExp.svg'
+ 
+import americanImage from 'src/assets/images/AExp.svg'
+
+//import image1Src from './assets/img1.png'; 
+import announcementIcon from '../../assets/images/announcement.png';
+import linksIcon from '../../assets/images/links.png';
+import flowIcon from '../../assets/images/flow.png';//
+
+import msicon from '../../assets/images/msicon.png';
+//import americanImage from 'src/assets/images/AExp.svg';
+import rmsIcon from 'src/assets/images/msicon.png';
+ 
+
+describe('68838761', () => {
+  test('should pass', () => {
+    // console.log(image1Src);
+    // console.log(rmsIcon);
+    // console.log(msicon);
+    // console.log(americanImage);
+    
+  });
+});
+
+// describe('68838762', () => {
+//   test('should pass', () => {
+//     console.log(americanImage);
+//   });
+// });
+
+describe('68838763', () => {
+  test('should pass', () => {
+    console.log(image1Src12);
+  });
+});
+
+describe('68838764', () => {
+  test('should pass', () => {
+    console.log(announcementIcon);
+  });
+});
+
+describe('68838765', () => {
+  test('should pass', () => {
+    console.log(linksIcon);
+  });
+});
+
+describe('68838766', () => {
+  test('should pass', () => {
+    console.log(flowIcon);
+  });
+});
+
+// describe('68838767', () => {
+//   test('should pass', () => {
+//     console.log(msicon);
+//   });
+// });
+// describe('68838768', () => {
+//   test('should pass', () => {
+//     console.log(rmsIcon);
+//   });
+// });
+
+
+describe('LoginPage', () => {
+  it('render loginpage',async()=>{
+    render(<LoginPage />);
+   // const buttonElement = screen.getByRole("button");
+   // userEvent.click(buttonElement);
+  });
+  // it('should show error message when all the fields are not entered',async()=>{
+  //       render(<LoginPage />);
+  //       const buttonElement = screen.getByRole("button");
+  //       await userEvent.click(buttonElement);
+  //       expect (buttonElement).tobeInTheDocument();  
+  // });
+     
+  // it('should render Login Page with labels',()=>{
+  //   render(<LoginPage />);
+  //   expect(screen.getByRole('heading')).toHaveTextContent('User ID');
+  //   expect(screen.getByRole('heading')).toHaveTextContent('Password');
+  // });
+
+  // it('input should be empty initially', async()=>{
+  //   render(<LoginPage title ="" onChangeHadler={mockedOnChange}/>);
+  //   const input = screen.getByRole("textbox", { name: /userName/i });
+  //   expect(input).toHaveValue("");
+  // });
+
+  // it('should render Login Page with labels',()=>{
+  //   render(<LoginPage />);
+  //   expect(screen.getByRole('heading')).toHaveTextContent('User ID');
+  //   expect(screen.getByRole('heading')).toHaveTextContent('Password');
+  // });
+
+  // it('input should update by typed text', async()=>{
+  //      renderComponent("LoginPage");
+  //      const input = await screen.findByRole("textbox", { name: /userName/i });
+  //      await waitFor(() => expect(input).toHaveValue("userName"));
+  //      userEvent.clear(input);
+  //      expect(input).toHaveValue("");
+  // });
+
+  //   it('callback function is called on user interactions', async()=>{
+  //       renderComponent("LoginPage");
+  //       const input = await screen.findByRole("textbox", { name: /userName/i });
+  //       userEvent.type(input, "userName");
+  //       expect(mockedOnChange).toHaveBeenCalledWith("userName");
+  //   });
+
+  //  it('should show error message when all the fields are not entered',async()=>{
+  //  	render(<LoginPage />);
+  //  	const buttonElement = screen.getByRole("button");
+  //  	await userEvent.click(buttonElement);
+  //  	const alertElement = screen.getByRole("alert");
+  //  	expect (alertElement).tobeInTheDocument();  
+  //  });
+ });
