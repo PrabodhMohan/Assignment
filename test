@@ -1,35 +1,82 @@
  https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fmeetup-join%2F19%3Ameeting_Mjg3M2U3ODgtY2U5ZS00M2Q2LWI4NTItZTZjZTEwODljMDFl%40thread.v2%2F0%3Fcontext%3D%257b%2522Tid%2522%253a%2522dc546f40-1115-4c67-b3bf-6aac8454ea3e%2522%252c%2522Oid%2522%253a%25223198343f-a4a7-4e8e-9460-b5ffdb729c5e%2522%257d%26anon%3Dtrue&type=meetup-join&deeplinkId=a399bc7c-d718-4d04-9d09-4a0cf8ac4411&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true
 
-   const tableData = [
-    { id: 1, name: 'Item 1', checked: false },
-    { id: 2, name: 'Item 2', checked: false },
-    { id: 3, name: 'Item 3', checked: false },
-  ];
+Header.jsx
+src/components/Common/Header.jsx
+import React from "react";
+import {
+  IconAccount,
+  IconHome,
+  GlyphRight,
+} from "@americanexpress/dls-icons";
+import { Logo } from "@americanexpress/dls-react";
+import styles from "./Header.scss";
 
-  test('handles page change', () => {
-    const { getByText } = render(<CheckableDataTable tableData={tableData} />);
-    
-    // Trigger page change
-    fireEvent.click(getByText('2'));
-    
-    // Add assertions based on the expected behavior after the page change
-  });
+const Header = () => (
+  <header
+    id="dls-nav"
+    className="nav nav-horizontal nav-header nav-sticky dls-bright-blue-bg dls-white"
+    role="banner"
+  >
+    <div className="nav-brand pad-l">
+      <Logo styleType="bluebox-solid" size="md" alt="asd" color="white" />
+      <span className="margin-1-l margin-1-r">|</span>
+      <div>
+        <IconHome title="Example icon" titleId="example-icon-id" size="md" />
+      </div>
+      <span className="margin-1-l margin-1-r">|</span>
+      Regulatory Reporting Compute Engine
+    </div>
+    <div className="flex flex-justify-center">
+      <nav className={styles.navbar}>
+        <ul>
+          <li>
+            <a href="#">
+              <IconAccount size="sm" className="sm margin-1-l" />
+              Shoeb Ansari
+              <span className="margin-1-l margin-1-r">|</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Env-E1
+              <span className="margin-1-l margin-1-r">|</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Logout
+              <GlyphRight className="sm margin-1-l" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+);
 
-  test('handles rows per page change', () => {
-    const { getByLabelText } = render(<CheckableDataTable tableData={tableData} />);
-    
-    // Trigger rows per page change
-    fireEvent.change(getByLabelText('Rows per page'), { target: { value: '10' } });
-    
-    // Add assertions based on the expected behavior after the rows per page change
-  });
+Header.propTypes = {};
 
-  test('handles row check change', () => {
-    const { getByLabelText } = render(<CheckableDataTable tableData={tableData} />);
-    
-    // Trigger a row check change
-    fireEvent.click(getByLabelText('Select row 1'));
-    
-    // Add assertions based on the expected behavior after the row check change
-  });
+export default Header;
+-------------------
+src/components/Common/Header.scss
+.navbar ul{
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+  }
+  .navbar a{
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+  }
 
+  .navbar a:hover{
+    background-color:cadetblue;
+  }
+
+  .navbar li{
+    float: left;
+  }
